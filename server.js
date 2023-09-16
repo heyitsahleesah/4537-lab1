@@ -5,7 +5,6 @@ const path = require('path');
 const server = http.createServer((req, res) => {
     // Determine the requested file path based on the URL
     let filePath = './' + req.url;
-    console.log(req.url);
     
 
     // Default to serving 'index.html' if the URL is '/'

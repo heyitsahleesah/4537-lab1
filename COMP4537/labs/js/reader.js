@@ -38,6 +38,3 @@ function updateNotes() {
         }
     }, 2000);
 }
-
-// create an instance of readText
-const reader = new readText();
