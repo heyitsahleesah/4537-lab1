@@ -4,13 +4,14 @@ const path = require('path');
 
 const server = http.createServer((req, res) => {
     // Determine the requested file path based on the URL
-    let filePath = './public' + req.url;
+    let filePath = './' + req.url;
     console.log(req.url);
+    
 
     // Default to serving 'index.html' if the URL is '/'
-    if (filePath === './public/') {
-        filePath = './public/html/index.html';
-    }
+    //if (filePath === './COMP4537/') {
+    //     filePath = './public/html/index.html';
+    // }
 
     // Resolve the file extension
     const extname = path.extname(filePath);
