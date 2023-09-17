@@ -11,20 +11,6 @@ class newTextArea {
         this.textArea.id = id;
         this.textArea.value="";
 
-        class newTextArea {
-    constructor(id) {
-        // create the div container for the notes
-        this.container = document.getElementById("notes-container");
-        this.row = document.createElement("div");
-        this.container.appendChild(this.row);
-
-        // create a new text area and remove button
-        this.textArea = document.createElement("textarea");
-        this.textArea.className = "note";
-        this.textArea.id = id;
-        this.textArea.value="";
-
-
         // append textArea to the row div
         this.row.appendChild(this.textArea);
 
@@ -40,7 +26,7 @@ class newTextArea {
 
         // add eventListener for input for each textArea
         this.textArea.addEventListener('input', () => {
-            // create a JSON object if there is input
+            // create a JSON object for localstorage
             const note = {
                 message: this.textArea.value,
                 timestamp: Date.now()
@@ -50,7 +36,7 @@ class newTextArea {
             // update top right corner time stamp with the most recent stored time
             const timestampElement = document.getElementById('time-stamp-written');
             timestampElement.innerHTML = 'Last Stored at: ' + new Date(note.timestamp).toLocaleTimeString();
-        });
+        })
         
         // create event listener for the remove button
         this.removeButton.addEventListener('click', () => {
@@ -59,10 +45,6 @@ class newTextArea {
             // remove the data from localStorage
             localStorage.removeItem(this.textArea.id);
         });
-
-        // Fill the text area with the message from the note object
-        this.textArea.value = this.note.message;
-        localStorage.setItem(this.textArea.id, JSON.stringify(this.note));
 
     }
 
