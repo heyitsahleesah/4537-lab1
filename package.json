@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "http-server ./COMP4537/labs/1/ -p $PORT",
+    "postinstall": "npm install http-server -g",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
