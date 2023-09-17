@@ -4,6 +4,7 @@
   "description": "\"A simple note taking app - COMP 4537 lab 1\"",
   "main": "index.html",
   "scripts": {
+    "start": "http-server -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,5 +12,8 @@
     "url": "https://github.com/heyitsahleesah/4537-lab1.git"
   },
   "author": "Alissa Graham",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
 }
