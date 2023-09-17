@@ -1,7 +1,9 @@
 {
     "clean_urls": false,
-    "root":".",
-    "routes": {
-      "/COMP4537/labs/1/index.html": "COMP4537/labs/1/index.html"
-    }
+    "rewrites": [
+      {
+        "source": "^/$",
+        "destination": "/COMP4537/labs/1/index.html"
+      }
+    ]
   }
