@@ -14,5 +14,8 @@
   },
   "devDependencies": {
     "http-server": "^0.12.3"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
