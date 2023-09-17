@@ -22,6 +22,7 @@ function updateContents(){
     timestamp.innerHTML = 'Updated at: ' + new Date().toLocaleTimeString();
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        const addReadNote = new readText(localStorage.getItem(key));
+        const data = JSON.parse(localStorage.getItem(key))
+        const addReadNote = new readText(data.message);
     }
 }
