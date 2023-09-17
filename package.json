@@ -4,7 +4,7 @@
   "description": "\"A simple note taking app - COMP 4537 lab 1\"",
   "main": "index.html",
   "scripts": {
-    "start": "http-server 4537-lab1 -p $PORT",
+    "start": "http-server ./COMP4537/labs/1/ -p $PORT",
     "postinstall": "npm install http-server -g",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
