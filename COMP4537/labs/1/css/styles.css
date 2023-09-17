@@ -30,6 +30,16 @@ body {
     font-size: 14px;
 }
 
+/* reader page notes from localstorage */
+.reader-note{
+    background-color: #6bf6a5;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 200px;
+    border-radius: 10px; /* Adjust the value to control the roundness of the corners */
+    padding: 10px; /* add space around text */
+}
+
 /* Styles for the button */
 .button {
     background-color: #007BFF; /* Button background color */
@@ -40,18 +50,6 @@ body {
     cursor: pointer; /* Show a hand cursor on hover */
     font-size: 16px; /* Font size */
     margin: 0 10px;
-}
-
-/* styles for the save-button on writer*/
-.save-button {
-    background-color: #00c251; /* Button background color */
-    color: #fff; /* Text color */
-    padding: 10px 10px; /* Padding inside the button */
-    border: none; /* Remove button border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Show a hand cursor on hover */
-    font-size: 14px; /* Font size */
-    margin: 10px;
 }
 
 /* Add a hover effect */
