@@ -1,3 +1,6 @@
+// strings shown to the user
+const timestampUpdatedMessage = 'Updated at: ';
+
 class readText {
     constructor(text){
         // get the container in reader.html for the notes and create a new div
@@ -27,7 +30,7 @@ function updateContents(){
     container.innerHTML = '';
     // get the top right corner timestamp for updating
     const timestamp = document.getElementById('time-stamp-read');
-    timestamp.innerHTML = 'Updated at: ' + new Date().toLocaleTimeString();
+    timestamp.innerHTML = timestampUpdatedMessage + new Date().toLocaleTimeString();
     // iterrate through the keys in localstorage
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);

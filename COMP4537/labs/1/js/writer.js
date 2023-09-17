@@ -1,3 +1,7 @@
+// strings shown to the user
+const timestampStoreMessage = 'Last Stored at: ';
+const emptyString = '';
+
 class newTextArea {
     constructor(id) {
         // create the div container for the notes
@@ -9,7 +13,7 @@ class newTextArea {
         this.textArea = document.createElement("textarea");
         this.textArea.className = "note";
         this.textArea.id = id;
-        this.textArea.value="";
+        this.textArea.value = emptyString;
 
         // append textArea to the row div
         this.row.appendChild(this.textArea);
@@ -35,7 +39,7 @@ class newTextArea {
             localStorage.setItem(this.textArea.id, JSON.stringify(note));
             // update top right corner time stamp with the most recent stored time
             const timestampElement = document.getElementById('time-stamp-written');
-            timestampElement.innerHTML = 'Last Stored at: ' + new Date(note.timestamp).toLocaleTimeString();
+            timestampElement.innerHTML = timestampStoreMessage + new Date(note.timestamp).toLocaleTimeString();
         })
         
         // create event listener for the remove button
@@ -45,7 +49,6 @@ class newTextArea {
             // remove the data from localStorage
             localStorage.removeItem(this.textArea.id);
         });
-
     }
 
     // fill the text area with the text
@@ -76,7 +79,7 @@ function loadStorage() {
     const RecentTime = Math.max(...timestamps);
     // add this as the last time data was stored on the top right
     const timestampElement = document.getElementById('time-stamp-written');
-    timestampElement.innerHTML = 'Last Stored at: ' + new Date(RecentTime).toLocaleTimeString();
+    timestampElement.innerHTML = timestampStoreMessage + new Date(RecentTime).toLocaleTimeString();
     }
 }
 

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <head>
-    <title>Alissa's Note Writer</title>
+    <title>Alissa's Lab 1 Note App - Note Writer</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
+
+<!-- load the localStorage on page load -->
 <body onload="loadStorage()">
     <div class="container">
         <div class="title-and-timestamp">
@@ -11,6 +13,7 @@
         </div>
         <div id="notes-container">
         </div>
+
         <!-- Button to add notes -->
         <button class="add-note-button" onclick="addNote()">Add Notes</button>
 

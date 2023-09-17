@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <head> 
-    <title>Alissa's Note Reader</title>
+    <title>Alissa's Lab 1 Note App - Note Reader</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
+
+<!-- Update notes onpage load and every 2 seconds -->
 <body onload="updateNotes()">
     <div class="container">
         <div class="title-and-timestamp">
             <h1 class="title">Current Notes</h1>
             <div id="time-stamp-read"></div>
         </div>
+
         <div id="notes-container"></div>
+        <!-- Button to return to index -->
         <div class="button-container">
             <button class="button"  onclick="window.location.href = './index.html';">Home</button>
         </div>
