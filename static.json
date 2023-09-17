@@ -1,7 +1,7 @@
 {
     "clean_urls": false,
     "routes": {
-      "/COMP4537/labs/1/index.html": "public/COMP4537/labs/1/index.html"
+      "/COMP4537/labs/1/index.html": "./COMP4537/labs/1/index.html"
     },
     "rewrites": [
       {
