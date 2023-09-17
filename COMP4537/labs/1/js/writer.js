@@ -142,14 +142,6 @@ function loadStorage() {
 }
 
 function addNote() {
-    const timestamp = Date.now();
     // create new instance of AddNote class with functionality
-    const addNote = new newTextArea(timestamp);
-    addNote.note.message = '';
-    addNote.note.timestamp = timestamp;
-
-    // Fill the text area with the empty message and store it in localStorage
-    addNote.fillText('');
-    // store initial blank note in localStorage
-    localStorage.setItem(addNote.textArea.id, JSON.stringify(addNote.note));
+    const addNote = new newTextArea(Date.now());
 }
