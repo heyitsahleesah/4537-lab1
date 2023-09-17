@@ -16,7 +16,6 @@ const server = http.createServer((req, res) => {
         '.html': 'text/html',
         '.js': 'text/javascript',
         '.css': 'text/css',
-        // Add more types here
     };
 
     contentType = contentTypeMap[extname] || 'application/octet-stream';
