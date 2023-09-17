@@ -2,14 +2,17 @@
   "name": "lab-1",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "http-server -p $PORT"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3"
   }
 }
