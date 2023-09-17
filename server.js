@@ -3,61 +3,46 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-// Check if the request is using HTTPS
-function requireHTTPS(req, res, next) {
-  if (req.headers['x-forwarded-proto'] !== 'https' && process.env.NODE_ENV === 'production') {
-    // Redirect to HTTPS
-    const httpsUrl = `https://${req.headers.host}${req.url}`;
-    res.writeHead(301, { 'Location': httpsUrl });
-    res.end();
-  } else {
-    // Continue with handling HTTP requests
-    next();
-  }
-}
+const server = http.createServer((req, res) => {
+    
+    // Determine the requested file path based on the URL
+    let filePath = './' + req.url;
 
-// Create an HTTP server with HTTPS redirection middleware
-const httpServer = http.createServer(requireHTTPS);
+    // Resolve the file extension
+    const extname = path.extname(filePath);
+    let contentType = 'text/html';
 
-// Determine the requested file path based on the URL
-httpServer.on('request', (req, res) => {
-  let filePath = './' + req.url;
+    // Map file extensions to their content types (add more as needed)
+    const contentTypeMap = {
+        '.html': 'text/html',
+        '.js': 'text/javascript',
+        '.css': 'text/css',
+        // Add more types here
+    };
 
-  // Resolve the file extension
-  const extname = path.extname(filePath);
-  let contentType = 'text/html';
+    contentType = contentTypeMap[extname] || 'application/octet-stream';
 
-  // Map file extensions to their content types (add more as needed)
-  const contentTypeMap = {
-    '.html': 'text/html',
-    '.js': 'text/javascript',
-    '.css': 'text/css',
-    // Add more types here
-  };
-
-  contentType = contentTypeMap[extname] || 'application/octet-stream';
-
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      if (err.code === 'ENOENT') {
-        // File not found, respond with a 404 error
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('File not found');
-      } else {
-        // Other server error, respond with a 500 error
-        res.writeHead(500);
-        res.end(`Server Error: ${err.code}`);
-      }
-    } else {
-      // Serve the file with the appropriate content type
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content, 'utf-8');
-    }
-  });
+    fs.readFile(filePath, (err, content) => {
+        if (err) {
+            if (err.code === 'ENOENT') {
+                // File not found, respond with a 404 error
+                res.writeHead(404, { 'Content-Type': 'text/html' });
+                res.end('File not found');
+            } else {
+                // Other server error, respond with a 500 error
+                res.writeHead(500);
+                res.end(`Server Error: ${err.code}`);
+            }
+        } else {
+            // Serve the file with the appropriate content type
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.end(content, 'utf-8');
+        }
+    });
 });
 
 const port = process.env.PORT || 3000;
 
-httpServer.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
