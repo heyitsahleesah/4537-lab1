@@ -1,21 +1,15 @@
 {
   "name": "lab-1",
   "version": "1.0.0",
-  "description": "",
+  "description": "\"A simple note taking app - COMP 4537 lab 1\"",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server -p $PORT"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "nodemon": "^3.0.1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heyitsahleesah/4537-lab1.git"
   },
-  "devDependencies": {
-    "http-server": "^0.12.3"
-  },
-  "engines": {
-    "node": "14.x"
-  }
+  "author": "Alissa Graham",
+  "license": "ISC"
 }
