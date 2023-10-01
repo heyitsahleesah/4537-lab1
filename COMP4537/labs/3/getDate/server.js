@@ -17,4 +17,4 @@ http.createServer(function (req, res) {
         res.writeHead(404, {'Content-type': 'text/plain'});
         res.end('Not Found');
     }
-}).listen(8888);
+}).listen(process.env.PORT || 3000);
