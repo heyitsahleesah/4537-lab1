@@ -1,11 +1,10 @@
 {
-  "name": "lab-3",
+  "name": "comp-4375-labs",
   "version": "1.0.0",
-  "description": "lab 3 exercise B: deploy your own API",
-  "main": "server.js",
+  "description": "All labs for COMP 4375",
+  "main": "/COMP4375/labs/3/getDate/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
