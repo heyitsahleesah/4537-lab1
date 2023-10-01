@@ -12,7 +12,8 @@ http.createServer(function (req, res) {
         res.writeHead(200, {'Content-Type': 'text/html'});
         let name = q.query.name || 'Unknown';
         let message = dt.getDate(name);
-        res.end(message);
+        const messageInBlue = `<p style="color: blue;">${message}</p>`;
+        res.end(messageInBlue);
     } else {
         res.writeHead(404, {'Content-type': 'text/plain'});
         res.end('Not Found');
