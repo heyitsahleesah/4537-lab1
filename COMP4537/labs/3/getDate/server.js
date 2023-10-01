@@ -7,7 +7,7 @@ let dt = require('./modules/utils');
 http.createServer(function (req, res) {
     let q = url.parse(req.url, true);
 
-    if (q.pathname == '/COMP4537/labs/3/getDate/') {
+    if (q.pathname == '/COMP4537/labs/3/getDate/' && q.query.name) {
         // console.log(q.query);
         res.writeHead(200, {'Content-Type': 'text/html'});
         let name = q.query.name || 'Unknown';
