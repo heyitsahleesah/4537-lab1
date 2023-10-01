@@ -11,6 +11,7 @@ http.createServer(function (req, res) {
         // console.log(q.query);
         res.writeHead(200, {'Content-Type': 'text/html'});
         let name = q.query.name || 'Unknown';
+        console.log('Name:', name);
         let message = dt.getDate(name);
         const messageInBlue = `<p style="color: blue;">${message}</p>`;
         res.end(messageInBlue);
