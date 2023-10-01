@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node COMP4537/labs/1/3/getDate/server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC"
