@@ -4,7 +4,7 @@ let http = require('http');
 let url = require('url');
 let dt = require('./modules/utils');
 const fs = require('fs');
-const path = path
+const path = require('path');
 const filePath = '../readFile/file.txt';
 
 http.createServer(function (req, res) {
