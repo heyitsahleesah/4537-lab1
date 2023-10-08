@@ -36,7 +36,7 @@ function addDefinition() {
             document.getElementById('output').innerHTML = response.message;
         } else if (xhttp.status === 400) {
             response = JSON.parse(xhttp.responseText);
-            document.getElementById('output').innerHTML = "received code: " + xhttp.status + ". " + response.message;
+            document.getElementById('output').innerHTML = response.message;
         }  else {
             document.getElementById('output').innerHTML = 'Unexpected status code' + xhttp.status;
         }
@@ -70,8 +70,8 @@ function getDefinitions() {
             // print definition if successful
             document.getElementById('wordContainer').innerHTML = response.definition;
         } else {
-            // print error message
-            document.getElementById('wordContainer').innerHTML = "received code: " + xhttp.status + ". Please input a word";
+            response = JSON.parse(xhttp.responseText);
+            document.getElementById('output').innerHTML = response.message;
         }
     }
 }
