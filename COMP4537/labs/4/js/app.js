@@ -15,12 +15,12 @@ function addDefinition() {
 
         xhttp.open('POST', url, true)
         xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
-        xhttp.send(post);
+        xhttp.send();
 
         xhttp.onreadystatechange = function () {
             if(xhttp.status === 200) {
-                
-                document.getElementById('output').innerHTML = response.result.message;
+                const response = JSON.parse(this.responseText);
+                document.getElementById('output').innerHTML = response;
             }   
         };
     };
