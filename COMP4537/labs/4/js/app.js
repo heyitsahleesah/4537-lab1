@@ -3,20 +3,24 @@ const endpoint = 'http://www.wilwscott.com/COMP4537/labs/4/api/definitions/';
 function addDefinition() {
     const word = document.getElementById('word').value;
     const definition = document.getElementById('definition').value;
-    if (!word || !definition || word.trim() === '' || definition.trim() ==='') {
+    const definitionWithoutSpaces = definition.replace(' ', '+');
+    let xhttp = new XMLHttpRequest();
+
+    if (!word || !definition || word.trim() === '' || definitionWithoutSpaces.trim() ==='') {
         document.getElementById('output').innerHTML = 'Please input both a word and definition to enter.';
     } else {
-        const param = '?word=' + word + "&definition=" + definition;
+        const param = '?word=' + word + "&definition=" + definitionWithoutSpaces;
         const url = endpoint + param;
-        let xhttp = new XMLHttpRequest();
+
 
         xhttp.open('POST', url, true)
         xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
         xhttp.send(post);
 
-        xhttp.onload = function () {
+        xhttp.onreadystatechange = function () {
             if(xhttp.status === 200) {
-                document.getElementById('output').innerHTML ='Definition successfully saved!';
+                
+                document.getElementById('output').innerHTML = response.result.message;
             }   
         };
     };
@@ -34,11 +38,14 @@ function getDefinitions() {
         
         xhttp.open('GET', url, true);
         xhttp.send();
-        xhttp.onload = function () {
-            if(xhttp.status === 200) {
-                const response = JSON.parse(this.responseText)
+        xhttp.onreadystatechange = function () {
+        const response = JSON.parse(this.responseText)
+            if(response.status === 200) {
+                const actualDefinition = response.definition.replace('+', ' ');
                 document.getElementById('wordsContainer').innerHTML = response.definition;
+            } else {
+                document.getElementById('wordsContainer').innerHTML = response.message;
             }
-        };
+        }
     };
-}
+} 
