@@ -6,15 +6,11 @@ function addDefinition() {
     if (!word || !definition || word.trim() === '' || definition.trim() ==='') {
         document.getElementById('output').innerHTML = 'Please input both a word and definition to enter.';
     } else {
-        let wordObj = {
-            word: word,
-            definition: definition
-        };
-        
-        let post = JSON.stringify(wordObj);
+        const param = '?word=' + word + "&definition=" + definition;
+        const url = endpoint + param;
         let xhttp = new XMLHttpRequest();
 
-        xhttp.open('POST', endpoint, true)
+        xhttp.open('POST', url, true)
         xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
         xhttp.send(post);
 
