@@ -54,13 +54,13 @@ function getDefinitions() {
 
     // check for response
     xhttp.onreadystatechange = function () {
-        const response = JSON.parse(xhttp.responseText)
         if(xhttp.status === 200) {
+            const response = JSON.parse(xhttp.responseText)
             // print definition if successful
             document.getElementById('wordsContainer').innerHTML = response.definition;
         } else {
             // print error message
-            document.getElementById('wordsContainer').innerHTML = response.message;
+            document.getElementById('wordsContainer').innerHTML = xhttp.status;
         }
     }
 }
