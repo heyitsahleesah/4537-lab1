@@ -1,1 +1,1 @@
-web: node Lab-1/index.js
+web: node index.js
