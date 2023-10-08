@@ -3,13 +3,13 @@ const endpoint = 'http://www.wilwscott.com/COMP4537/labs/4/api/definitions/';
 function addDefinition() {
     const word = document.getElementById('word').value;
     const definition = document.getElementById('definition').value;
-    const definitionWithoutSpaces = definition.replace(' ', '+');
+    // const definitionWithoutSpaces = definition.replace(' ', '+');
     let xhttp = new XMLHttpRequest();
 
     if (!word || !definition || word.trim() === '' || definitionWithoutSpaces.trim() ==='') {
         document.getElementById('output').innerHTML = 'Please input both a word and definition to enter.';
     } else {
-        const param = '?word=' + word + "&definition=" + definitionWithoutSpaces;
+        const param = '?word=' + word + "&definition=" + definition;
         const url = endpoint + param;
 
 
@@ -41,7 +41,7 @@ function getDefinitions() {
         xhttp.onreadystatechange = function () {
         const response = JSON.parse(this.responseText)
             if(response.status === 200) {
-                const actualDefinition = response.definition.replace('+', ' ');
+                // const actualDefinition = response.definition.replace('+', ' ');
                 document.getElementById('wordsContainer').innerHTML = response.definition;
             } else {
                 document.getElementById('wordsContainer').innerHTML = response.message;
