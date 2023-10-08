@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const filePath = '../readFile/file.txt';
 
-http.createServer(function (req, res) {
+function handleRequest(req, res) {
     let q = url.parse(req.url, true);
 
     if (q.pathname == '/COMP4537/labs/3/getDate/' && q.query.name) {
@@ -45,4 +45,6 @@ http.createServer(function (req, res) {
         res.writeHead(404, {'Content-type': 'text/plain'});
         res.end('Not Found');
     }
-}).listen(process.env.PORT || 3000);
+  };
+  
+  module.exports = { handleRequest };

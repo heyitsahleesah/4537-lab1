@@ -2,7 +2,7 @@
   "name": "comp-4375-labs",
   "version": "1.0.0",
   "description": "All labs for COMP 4375",
-  "main": "/COMP4375/labs/3/getDate/server.js",
+  "main": "/Lab-1/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
