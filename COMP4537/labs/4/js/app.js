@@ -49,29 +49,33 @@ function addDefinition() {
 function getDefinitions() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
-    // if (!wordSearch || wordSearch.trim() === '') {
-    //     document.getElementById('wordsContainer').innerHTML = 'Please input a word to search';
-    // } else {
+    if (!wordSearch || wordSearch.trim() === '') {
+        document.getElementById('output').innerHTML = 'Please input both a word and definition.';
+    } else if (invalidChars.test(word) || invalidChars.test(definition)) {
+        document.getElementById('output').innerHTML = 'Input contains invalid characters. Please remove them.'; 
+    } else {
 
-    // create param to add to endpoint or query
-    const param = '?word=' + wordSearch
-    const url = endpoint + param;
+        // create param to add to endpoint or query
+        const param = '?word=' + wordSearch
+        const url = endpoint + param;
 
-    // create a new xmlhttprequest
-    let xhttp = new XMLHttpRequest();
-    
-    // send GET request
-    xhttp.open('GET', url, true);
-    xhttp.send();
+        // create a new xmlhttprequest
+        let xhttp = new XMLHttpRequest();
+        
+        // send GET request
+        xhttp.open('GET', url, true);
+        xhttp.send();
 
-    // check for response
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 200){
-            console.log('Response from server:', xhttp.responseText);
-            const response = JSON.parse(xhttp.responseText)
-            // print definition if successful
-            document.getElementById('wordContainer').innerHTML = response.definition;
-        } else {}
-            document.getElementById('output').innerHTML = xhttp.responseText.message;
+        // check for response
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState === 4 && xhttp.status === 200){
+                console.log('Response from server:', xhttp.responseText);
+                const response = JSON.parse(xhttp.responseText)
+                // print definition if successful
+                document.getElementById('wordContainer').innerHTML = response.definition;
+            } else {
+                document.getElementById('output').innerHTML = xhttp.responseText.message;
+            }
         }
     } 
+}
