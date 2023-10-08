@@ -49,12 +49,18 @@ function addDefinition() {
 function getDefinitions() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
-    if (!wordSearch || wordSearch.trim() === '') {
-        document.getElementById('wordContainer').innerHTML = 'Please input both a word and definition.';
-    } else if (invalidChars.test(word) || invalidChars.test(definition)) {
-        document.getElementById('wordContainer').innerHTML = 'Input contains invalid characters. Please remove them.'; 
-    } else {
 
+    // Regular expression to disallow numbers and special characters [chatgpt]
+    const invalidChars = /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\\/'"\-=]/;
+
+    // check for empty input
+    if (!wordSearch || wordSearch.trim() === '') {
+        document.getElementById('wordContainer').innerHTML = 'Please input a word.';
+        // check for invalid characters
+    } else if (invalidChars.test(wordSearch)) {
+        document.getElementById('wordContainer').innerHTML = 'Input contains invalid characters. Please remove them.'; 
+        //  proceed if input is acceptable
+    } else {
         // create param to add to endpoint or query
         const param = '?word=' + wordSearch
         const url = endpoint + param;
