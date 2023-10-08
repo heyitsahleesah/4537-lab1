@@ -35,7 +35,8 @@ function addDefinition() {
             response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = response.message;
         } else if (xhttp.status === 400) {
-            document.getElementById('output').innerHTML = "received code: " + xhttp.status + ". Please input a word and definition";
+            response = JSON.parse(xhttp.responseText);
+            document.getElementById('output').innerHTML = "received code: " + xhttp.status + ". " + response.message;
         }  else {
             document.getElementById('output').innerHTML = 'Unexpected status code' + xhttp.status;
         }
