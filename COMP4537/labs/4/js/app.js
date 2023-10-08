@@ -50,9 +50,9 @@ function getDefinitions() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
     if (!wordSearch || wordSearch.trim() === '') {
-        document.getElementById('output').innerHTML = 'Please input both a word and definition.';
+        document.getElementById('wordContainer').innerHTML = 'Please input both a word and definition.';
     } else if (invalidChars.test(word) || invalidChars.test(definition)) {
-        document.getElementById('output').innerHTML = 'Input contains invalid characters. Please remove them.'; 
+        document.getElementById('wordContainer').innerHTML = 'Input contains invalid characters. Please remove them.'; 
     } else {
 
         // create param to add to endpoint or query
@@ -74,7 +74,7 @@ function getDefinitions() {
                 // print definition if successful
                 document.getElementById('wordContainer').innerHTML = response.definition;
             } else {
-                document.getElementById('output').innerHTML = xhttp.responseText.message;
+                document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
             }
         }
     } 
