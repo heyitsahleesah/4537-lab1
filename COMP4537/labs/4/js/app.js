@@ -20,9 +20,9 @@ function addDefinition() {
     const url = endpoint + param;
 
     // send POST request
-    xhttp.open('POST', endpoint, true)
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhttp.send(param);
+    xhttp.open('POST', url, true)
+    // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send();
 
     // check status and display returned message
     xhttp.onreadystatechange = function () {
