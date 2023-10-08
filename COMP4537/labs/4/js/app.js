@@ -54,7 +54,9 @@ function getDefinitions() {
 
     // check for response
     xhttp.onreadystatechange = function () {
-        if(xhttp.status === 200) {
+        if (xhttp.readyState === 4){
+            console.log('Response from server:', xhttp.responseText);
+        } else if (xhttp.status === 200) {
             const response = JSON.parse(xhttp.responseText)
             // print definition if successful
             document.getElementById('wordsContainer').innerHTML = response.definition;
