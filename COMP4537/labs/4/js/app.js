@@ -63,10 +63,15 @@ function getDefinitions() {
     // check for response
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState === 4 || xhttp.status === 200){
-            console.log('Response from server:', xhttp.responseText);
-            const response = JSON.parse(xhttp.responseText)
-            // print definition if successful
-            document.getElementById('wordContainer').innerHTML = response.definition;
+            try {
+                console.log('Response from server:', xhttp.responseText);
+                const response = JSON.parse(xhttp.responseText)
+                // print definition if successful
+                document.getElementById('wordContainer').innerHTML = response.definition;
+            } catch (error) {
+                // Handle the case where the response is not valid JSON
+                document.getElementById('wordContainer').innerHTML = "Invalid JSON response";
+            }
         } else {
             // print error message
             document.getElementById('wordContainer').innerHTML = xhttp.status;
