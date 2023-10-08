@@ -21,13 +21,13 @@ function addDefinition() {
 
     // send POST request
     xhttp.open('POST', url, true)
-    // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send();
 
     // check status and display returned message
     xhttp.onreadystatechange = function () {
         if(xhttp.status === 200) {
-            const response = JSON.parse(this.responseText);
+            const response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = response.message;
         }   
     };
@@ -54,7 +54,7 @@ function getDefinitions() {
 
     // check for response
     xhttp.onreadystatechange = function () {
-        const response = JSON.parse(this.responseText)
+        const response = JSON.parse(xhttp.responseText)
         if(xhttp.status === 200) {
             // print definition if successful
             document.getElementById('wordsContainer').innerHTML = response.definition;
