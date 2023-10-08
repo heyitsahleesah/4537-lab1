@@ -21,7 +21,7 @@ function addDefinition() {
 
     // send POST request
     xhttp.open('POST', url, true)
-    xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+    // xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
     xhttp.send();
 
     // check status and display returned message
