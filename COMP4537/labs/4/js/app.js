@@ -7,6 +7,8 @@ function addDefinition() {
     // get the word and definition from the html text box and area
     const word = document.getElementById('word').value;
     const definition = document.getElementById('definition').value;
+    console.log('word: ', word);
+    console.log('definition: ', definition);
 
     // create a new xmlhttprequest
     let xhttp = new XMLHttpRequest();
@@ -20,9 +22,9 @@ function addDefinition() {
     const url = endpoint + param;
 
     // send POST request
-    xhttp.open('POST', endpoint, true)
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhttp.send(param);
+    xhttp.open('POST', url, true)
+    // xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send();
 
     // check status and display returned message
     xhttp.onreadystatechange = function () {
@@ -32,6 +34,9 @@ function addDefinition() {
         else if(xhttp.status === 200) {
             const response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = response.message;
+        } else {
+            // print error message
+            document.getElementById('ouput').innerHTML = xhttp.status;
         }   
     };
 }
