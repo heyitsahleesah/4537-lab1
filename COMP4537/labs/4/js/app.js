@@ -26,6 +26,8 @@ function addDefinition() {
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(param);
 
+    let response; 
+    
     // check status and display returned message
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
