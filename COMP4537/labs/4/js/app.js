@@ -28,10 +28,8 @@ function addDefinition() {
 
     // check status and display returned message
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4) {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
             console.log(xhttp.responseText);
-        }
-        else if(xhttp.status === 200) {
             const response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = response.message;
         } else {
@@ -67,10 +65,6 @@ function getDefinitions() {
             const response = JSON.parse(xhttp.responseText)
             // print definition if successful
             document.getElementById('wordContainer').innerHTML = response.definition;
-            // } catch (error) {
-            //     // Handle the case where the response is not valid JSON
-            //     document.getElementById('wordContainer').innerHTML = "Invalid JSON response";
-            // }
         } else {
             // print error message
             document.getElementById('wordContainer').innerHTML = xhttp.status;
