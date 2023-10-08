@@ -1,7 +1,7 @@
 // Some code checked with chatgpt
 
 // create endpoint for both functions
-const endpoint = 'http://www.wilwscott.com/COMP4537/labs/4/api/definitions/';
+const endpoint = 'https://www.wilwscott.com/COMP4537/labs/4/api/definitions/';
 
 function addDefinition() {
     // get the word and definition from the html text box and area
