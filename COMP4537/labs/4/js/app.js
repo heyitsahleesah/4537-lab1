@@ -1,12 +1,12 @@
 function addDefinition() {
-    const word = document.getElementById('word');
-    const definition = document.getElementById('definition');
-    const endpoint = 'https://alissalg-fd0c12a35b34.herokuapp.com/COMP4537/labs/4/api/definitions/';
+    const word = document.getElementById('word').value;
+    const definition = document.getElementById('definition').value;
+    const endpoint = 'http://www.wilwscott.com/COMP4537/labs/4/api/definitions/';
 
     let wordObj = {
         word: word,
         definition: definition
-    }
+    };
     
     let post = JSON.stringify(wordObj);
     let xhttp = new XMLHttpRequest();
@@ -17,7 +17,22 @@ function addDefinition() {
 
     xhttp.onload = function () {
         if(xhttp.status === 200) {
-            console.log("Definition successfully saved!") 
+            console.log("Definition successfully saved!");
         }
-    }
+    };
+}
+
+function getDefinitions() {
+    const wordSearch = document.getElementById('wordSearch').value;
+    const param = '?word=' + wordSearch
+    const url = endpoint + param;
+    
+    xhttp.open('GET', url, true);
+    xhttp.set();
+    xhttp.onload = function () {
+        if(xhttp.status === 200) {
+            const response = JSON.parse(this.responseText)
+            document.getElementById('wordsContainer').innerHTML = response.definition;
+        }
+    };
 }
