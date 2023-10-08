@@ -6,7 +6,7 @@ function addDefinition() {
     // const definitionWithoutSpaces = definition.replace(' ', '+');
     let xhttp = new XMLHttpRequest();
 
-    if (!word || !definition || word.trim() === '' || definitionWithoutSpaces.trim() ==='') {
+    if (!word || !definition || word.trim() === '' || definition.trim() ==='') {
         document.getElementById('output').innerHTML = 'Please input both a word and definition to enter.';
     } else {
         const param = '?word=' + word + "&definition=" + definition;
