@@ -54,11 +54,12 @@ function getDefinitions() {
 
     // check for response
     xhttp.onreadystatechange = function () {
-    const response = JSON.parse(this.responseText)
         if(xhttp.status === 200) {
+            const response = JSON.parse(this.responseText)
             // print definition if successful
             document.getElementById('wordsContainer').innerHTML = response.definition;
         } else {
+            const response = JSON.parse(this.responseText)
             // print error message
             document.getElementById('wordsContainer').innerHTML = response.message;
         }
