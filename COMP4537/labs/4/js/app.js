@@ -32,7 +32,11 @@ function addDefinition() {
             console.log(xhttp.responseText);
             const response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = response.message;
-        }   
+        } else if (xhttp.status === 400) {
+            document.getElementById('output').innerHTML = response.message;
+        }  else {
+            document.getElementById('output').innerHTML = 'Unexpected status code' + xhttp.status;
+        }
     };
 }
 // }
