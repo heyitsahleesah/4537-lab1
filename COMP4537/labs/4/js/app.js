@@ -32,9 +32,6 @@ function addDefinition() {
             console.log(xhttp.responseText);
             const response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = response.message;
-        } else {
-            // print error message
-            document.getElementById('ouput').innerHTML = xhttp.status;
         }   
     };
 }
