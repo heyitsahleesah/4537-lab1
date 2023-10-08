@@ -27,15 +27,15 @@ function addDefinition() {
     xhttp.send(param);
 
     let response; 
-    
+
     // check status and display returned message
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             console.log(xhttp.responseText);
-            const response = JSON.parse(xhttp.responseText);
+            response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = response.message;
         } else if (xhttp.status === 400) {
-            document.getElementById('output').innerHTML = response.message;
+            document.getElementById('output').innerHTML = xhttp.status;
         }  else {
             document.getElementById('output').innerHTML = 'Unexpected status code' + xhttp.status;
         }
