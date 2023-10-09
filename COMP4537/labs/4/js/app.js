@@ -36,7 +36,7 @@ function addDefinition() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
                 console.log(xhttp.responseText);
                 response = JSON.parse(xhttp.responseText);
-                document.getElementById('output').innerHTML = response.message;
+                document.getElementById('output').innerHTML = "Request: " + response.count + "<br>" + response.message;
             } else if (xhttp.status === 400) {
                 document.getElementById('output').innerHTML = xhttp.responseText.message;
             }  else {
@@ -78,7 +78,7 @@ function getDefinitions() {
                 console.log('Response from server:', xhttp.responseText);
                 const response = JSON.parse(xhttp.responseText)
                 // print definition if successful
-                document.getElementById('wordContainer').innerHTML = response.definition;
+                document.getElementById('wordContainer').innerHTML = "Request: " + response.count + "<br>" + response.definition;
             } else {
                 document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
             }
