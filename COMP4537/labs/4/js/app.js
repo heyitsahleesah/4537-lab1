@@ -4,6 +4,8 @@
 const noWord = 'Please input both a word and definition.';
 const invalidCharacters = 'Input contains invalid characters. Please remove them.';
 const emptySearch = 'Please input a word.';
+const unexpected = 'Unexpected status code';
+const requestString = "Request: ";
 
 // create endpoint for both functions
 const endpoint = 'https://www.wilwscott.com/COMP4537/labs/4/api/definitions/';
@@ -40,11 +42,11 @@ function addDefinition() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
                 console.log(xhttp.responseText);
                 response = JSON.parse(xhttp.responseText);
-                document.getElementById('output').innerHTML = "Request: " + response.count + "<br>" + response.message;
+                document.getElementById('output').innerHTML = requestString + response.count + "<br>" + response.message;
             } else if (xhttp.status === 400) {
                 document.getElementById('output').innerHTML = xhttp.responseText.message;
             }  else {
-                document.getElementById('output').innerHTML = 'Unexpected status code' + xhttp.status;
+                document.getElementById('output').innerHTML = unexpected + xhttp.status;
             }
         };
     }
@@ -82,7 +84,7 @@ function getDefinitions() {
                 console.log('Response from server:', xhttp.responseText);
                 const response = JSON.parse(xhttp.responseText)
                 // print definition if successful
-                document.getElementById('wordContainer').innerHTML = "Request: " + response.count + "<br>" + response.definition;
+                document.getElementById('wordContainer').innerHTML = requestString + response.count + "<br>" + response.definition;
             } else {
                 document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
             }
