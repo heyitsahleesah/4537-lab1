@@ -66,6 +66,19 @@ const server = http.createServer((req, res) => {
             res.end(data);
         }
         });
+    }
+    // Handle lab 5 HTML pages
+    else if ( q.pathname === '/COMP4537/labs/5/index.html') {
+        const staticFilePath = path.join(__dirname, q.pathname);
+        fs.readFile(staticFilePath, (err, data) => {
+        if (err) {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('Not Found');
+        } else {
+            res.writeHead(200);
+            res.end(data);
+        }
+        });
     }  else {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not Found');
