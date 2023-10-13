@@ -1,5 +1,10 @@
 // Some code checked and adapted from chatgpt
 
+// user strings
+const noWord = 'Please input both a word and definition.';
+const invalidChars = 'Input contains invalid characters. Please remove them.';
+const emptySearch = 'Please input a word.';
+
 // create endpoint for both functions
 const endpoint = 'https://www.wilwscott.com/COMP4537/labs/4/api/definitions/';
 
@@ -11,14 +16,13 @@ function addDefinition() {
     // Regular expression to disallow numbers and special characters [chatgpt]
     const invalidChars = /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\\/'"\-=]/;
 
-
     // create a new xmlhttprequest
     let xhttp = new XMLHttpRequest();
 
     if (!word || !definition || word.trim() === '' || definition.trim() ==='') {
-        document.getElementById('output').innerHTML = 'Please input both a word and definition.';
+        document.getElementById('output').innerHTML = noWord;
     } else if (invalidChars.test(word) || invalidChars.test(definition)) {
-        document.getElementById('output').innerHTML = 'Input contains invalid characters. Please remove them.'; 
+        document.getElementById('output').innerHTML = invalidChars; 
     } else {
         // create params and add to endpoint url for query
         const param = '?word=' + word + "&definition=" + definition;
@@ -55,10 +59,10 @@ function getDefinitions() {
 
     // check for empty input
     if (!wordSearch || wordSearch.trim() === '') {
-        document.getElementById('wordContainer').innerHTML = 'Please input a word.';
+        document.getElementById('wordContainer').innerHTML = emptySearch;
         // check for invalid characters
     } else if (invalidChars.test(wordSearch)) {
-        document.getElementById('wordContainer').innerHTML = 'Input contains invalid characters. Please remove them.'; 
+        document.getElementById('wordContainer').innerHTML = invalidChars; 
         //  proceed if input is acceptable
     } else {
         // create param to add to endpoint or query

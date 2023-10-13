@@ -1,5 +1,8 @@
 // Some code checked and adapted from chatgpt
 
+// strings for what the user would see
+const noQuery = 'Please input a SELECT or INSERT query.';
+
 // create endpoint for both functions
 const endpoint = 'https://www.wilwscott.com/COMP4537/labs/5/api/v1/sql/';
 
@@ -51,7 +54,7 @@ function queryDB() {
 
     // check for empty input
     if (!sqlQuery || sqlQuery.trim() === '') {
-        document.getElementById('errorMessage').innerHTML = 'Please input a SELECT or INSERT query.';
+        document.getElementById('errorMessage').innerHTML = ;
         // check for invalid characters
     } else if (invalidChars.test(wordSearch)) {
         document.getElementById('errorMessage').innerHTML = 'Input contains invalid characters. Please remove them.'; 
