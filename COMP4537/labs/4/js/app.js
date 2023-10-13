@@ -2,7 +2,7 @@
 
 // user strings
 const noWord = 'Please input both a word and definition.';
-const invalidChars = 'Input contains invalid characters. Please remove them.';
+const invalidCharacters = 'Input contains invalid characters. Please remove them.';
 const emptySearch = 'Please input a word.';
 
 // create endpoint for both functions
@@ -22,7 +22,7 @@ function addDefinition() {
     if (!word || !definition || word.trim() === '' || definition.trim() ==='') {
         document.getElementById('output').innerHTML = noWord;
     } else if (invalidChars.test(word) || invalidChars.test(definition)) {
-        document.getElementById('output').innerHTML = invalidChars; 
+        document.getElementById('output').innerHTML = invalidCharacters; 
     } else {
         // create params and add to endpoint url for query
         const param = '?word=' + word + "&definition=" + definition;
@@ -62,7 +62,7 @@ function getDefinitions() {
         document.getElementById('wordContainer').innerHTML = emptySearch;
         // check for invalid characters
     } else if (invalidChars.test(wordSearch)) {
-        document.getElementById('wordContainer').innerHTML = invalidChars; 
+        document.getElementById('wordContainer').innerHTML = invalidCharacters; 
         //  proceed if input is acceptable
     } else {
         // create param to add to endpoint or query
