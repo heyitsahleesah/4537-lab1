@@ -21,7 +21,7 @@ body {
 }
 
 /* Styles for the button */
-.button {
+.insertButton, .queryButton {
     background-color: #007BFF; /* Button background color */
     color: #fff; /* Text color */
     padding: 10px 20px; /* Padding inside the button */
@@ -33,6 +33,10 @@ body {
 }
 
 /* Add a hover effect */
-.button:hover {
+.insertButton:hover {
     background-color: #0056b3; /* Darker background on hover */
+}
+
+.queryButton:hover {
+    background-color: #02795b; /* Darker background on hover */
 }
