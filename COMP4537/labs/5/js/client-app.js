@@ -43,13 +43,13 @@ function insertRows() {
                 document.getElementById('response').innerHTML = unexpected + xhttp.status;
             }
         };
-        // increment the i count for the next name and birthday 
-        i++; 
+    }
+    // increment the i count for the next name and birthday 
+    i++; 
 
-        // reset the count before i ever gets greater than 4
-        if (i === names.length){
-            i = 0;
-        }
+    // reset the count before i ever gets greater than 4
+    if (i === names.length){
+        i = 0;
     }
 }
 
