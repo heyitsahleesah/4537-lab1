@@ -16,12 +16,12 @@ const endpoint = 'https://www.wilwscott.com/COMP4537/labs/5/api/v1/sql/';
 function insertRows() {
     let names = ['Sarah Brown', 'John Smith', 'Jack Ma', 'Elon Musk'];
     let birthdays = ['1901-01-01', '1941-01-01', '1961-01-30', '1990-01-01'];
+    let patientValues = '';
 
    for (let i = 0; i < names.length; i++) {
-        if (i === names.length) {
-            patientValues += "('" + names[i] + "', '" + birthdays[i] + "')"
-        } else {
-        patientValues += "('" + names[i] + "', '" + birthdays[i] + "'),"
+        patientValues += "('" + names[i] + "', '" + birthdays[i] + "')"
+        if (i < names.length -1 ){
+        patientValues += ","
         }
    }
     let param = encodeURIComponent(insertPatientStatement += patientValues);
