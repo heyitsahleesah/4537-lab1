@@ -20,7 +20,9 @@ function insertRows() {
 
    if (i < names.length) {
         let resetInsertPatient = insertPatientStatement;
-        let param = encodeURIComponent(resetInsertPatient += ' (' + names[i].toString + ', ' + birthdays[i].toString + ')');
+        let currentName = names[i].toString;
+        let currentBirthday = birthdays[i].toString
+        let param = encodeURIComponent(resetInsertPatient += ' (' + currentName + ', ' + currentBirthday + ')');
         let url = endpoint + param;
 
         // create a new xmlhttprequest
