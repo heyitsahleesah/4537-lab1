@@ -22,7 +22,7 @@ function insertRows() {
         let param = insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')';
 
         // create a new xmlhttprequest
-        let xhttp = new XMLHttpRequest();x
+        let xhttp = new XMLHttpRequest();
 
         // send POST request
         xhttp.open('POST', endpoint, true)
