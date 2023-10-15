@@ -34,12 +34,13 @@ function insertRows() {
         // check status and display returned message
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
-                console.log(xhttp.responseText);
-                response = JSON.parse(xhttp.responseText);
+                console.log(xhttp.responseText.result);
+                let response = JSON.parse(xhttp.responseText);
                 // TO DO: update with how the server will respond
-                document.getElementById('response').innerHTML = xhttp.responseText.result;
+                document.getElementById('response').innerHTML = response.result;
             } else if (xhttp.status === 400) {
-                document.getElementById('response').innerHTML = xhttp.responseText.result;
+                let response = JSON.parse(xhttp.responseText);
+                document.getElementById('response').innerHTML = response.result;
             }  else {
                 document.getElementById('response').innerHTML = unexpected + xhttp.status;
             }
@@ -87,11 +88,12 @@ function queryDB() {
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200){
                     console.log('Response from server:', xhttp.responseText);
-                    const response = JSON.parse(xhttp.responseText)
+                    let response = JSON.parse(xhttp.responseText)
                     // print definition if successful
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
+                    document.getElementById('returnMessage').innerHTML = response.result;
                 } else {
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
+                    let response = JSON.parse(xhttp.responseText);
+                    document.getElementById('returnMessage').innerHTML = response.result;
                 } 
             }
         } else {
@@ -110,11 +112,12 @@ function queryDB() {
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
                     console.log(xhttp.responseText);
-                    response = JSON.parse(xhttp.responseText);
+                    let response = JSON.parse(xhttp.responseText);
                     // TO DO: update with how the server will respond
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
+                    document.getElementById('returnMessage').innerHTML = response.result;
                 } else if (xhttp.status === 400) {
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
+                    let response = JSON.parse(xhttp.responseText);
+                    document.getElementById('returnMessage').innerHTML = response.result;
                 }  else {
                     document.getElementById('returnMessage').innerHTML = unexpected + xhttp.status;
                 }
