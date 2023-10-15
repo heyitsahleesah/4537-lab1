@@ -19,7 +19,7 @@ function insertRows() {
     let i = 0;
 
    if (i < names.length) {
-        const param = insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')';
+        let param = insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')';
 
         // create a new xmlhttprequest
         let xhttp = new XMLHttpRequest();x
