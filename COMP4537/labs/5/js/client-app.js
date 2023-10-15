@@ -45,7 +45,7 @@ function insertRows() {
             let response = JSON.parse(xhttp.responseText);
             // display success
             document.getElementById('response').innerHTML = response.result;
-        } else if (xhttp.status === 500) {
+        } else if (xhttp.status === 400) {
             // display any errors
             document.getElementById('response').innerHTML = xhttp.responseText.result;
         }  else {
@@ -102,9 +102,11 @@ function queryDB() {
                         // Append the new element to the display element
                         display.appendChild(rowElement);
                     });
-                } else {
+                } else if (xhttp.status === 500) {
                     document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
-                } 
+                } else {
+                    document.getElementById('returnMessage').innerHTML = unexpected + xhttp.status;
+                }
             }
         } else {
             // create a new xmlhttprequest
@@ -126,7 +128,7 @@ function queryDB() {
                     // display on success
                     document.getElementById('returnMessage').innerHTML = response.result;
                     //deterimine display if anything other than 200 shows
-                } else if (xhttp.status === 500) {
+                } else if (xhttp.status === 400) {
                     document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
                 }  else {
                     document.getElementById('returnMessage').innerHTML = unexpected + xhttp.status;
