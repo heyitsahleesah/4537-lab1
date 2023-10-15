@@ -9,7 +9,6 @@ let insertPatientStatement = 'INSERT INTO patient(name, dateOfBirth) VALUES';
 
 // variables to be used
 let response; 
-let i = 0;
 
 // create endpoint for both functions
 const endpoint = 'https://www.wilwscott.com/COMP4537/labs/5/api/v1/sql/';
@@ -18,42 +17,40 @@ function insertRows() {
     let names = ['Sarah Brown', 'John Smith', 'Jack Ma', 'Elon Musk'];
     let birthdays = ['1901-01-01', '1941-01-01', '1961-01-30', '1990-01-01'];
 
-   if (i < names.length) {
-        let resetInsertPatient = insertPatientStatement;
-        let param = encodeURIComponent(resetInsertPatient += " ('" + names[i] + "', '" + birthdays[i] + "')");
-        let url = endpoint + param;
+   for (let i = 0; i < names.length; i++) {
+        if (i === names.length) {
+            patientValues += "('" + names[i] + "', '" + birthdays[i] + "')"
+        } else {
+        patientValues += "('" + names[i] + "', '" + birthdays[i] + "'),"
+        }
+   }
+    let param = encodeURIComponent(insertPatientStatement += patientValues);
+    let url = endpoint + param;
 
-        // create a new xmlhttprequest
-        let xhttp = new XMLHttpRequest();
-        console.log(param);
-        // send POST request
-        xhttp.open('POST', url, true)
-        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhttp.send();
+    // create a new xmlhttprequest
+    let xhttp = new XMLHttpRequest();
+    console.log(param);
+    // send POST request
+    xhttp.open('POST', url, true)
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send();
 
-        // check status and display returned message
-        xhttp.onreadystatechange = function () {
-            if (xhttp.readyState === 4 && xhttp.status === 200) {
-                console.log(xhttp.responseText.result);
-                let response = JSON.parse(xhttp.responseText);
-                // TO DO: update with how the server will respond
-                document.getElementById('response').innerHTML = response.result;
-            } else if (xhttp.status === 400) {
-                let response = JSON.parse(xhttp.responseText);
-                document.getElementById('response').innerHTML = response.result;
-            }  else {
-                document.getElementById('response').innerHTML = unexpected + xhttp.status;
-            }
-        };
-    }
-    // increment the i count for the next name and birthday 
-    i++; 
-
-    // reset the count before i ever gets greater than 4
-    if (i === names.length){
-        i = 0;
-    }
+    // check status and display returned message
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+            console.log(xhttp.responseText.result);
+            let response = JSON.parse(xhttp.responseText);
+            // TO DO: update with how the server will respond
+            document.getElementById('response').innerHTML = response.result;
+        } else if (xhttp.status === 400) {
+            let response = JSON.parse(xhttp.responseText);
+            document.getElementById('response').innerHTML = response.result;
+        }  else {
+            document.getElementById('response').innerHTML = unexpected + xhttp.status;
+        }
+    };
 }
+
 
 function queryDB() {
     // get word from text box
