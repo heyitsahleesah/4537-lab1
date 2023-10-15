@@ -86,7 +86,7 @@ function queryDB() {
                 if (xhttp.readyState === 4 && xhttp.status === 200){
                     console.log('Response from server:', xhttp.responseText);
                     let display = document.getElementById('returnMessage');
-                    diplay.innerHTML = '';
+                    display.innerHTML = '';
                     let response = JSON.parse(xhttp.responseText)
 
                     // parsing all of the rows is code adapted from chatgpt
