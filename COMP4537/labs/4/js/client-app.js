@@ -3,8 +3,8 @@
 // strings for what the user would see
 const noQuery = 'Please input a SELECT or INSERT query.';
 const invalidCharacters = 'Input contains invalid characters. Please remove them.';
-const tryAgain = 'Must only be SELECT or INSERT methods. Please try again';
-const unexpected = 'Unexpected status code';
+const tryAgain = 'Must only be SELECT or INSERT methods. Please try again.';
+const unexpected = 'Unexpected status code ';
 let insertPatientStatement = 'INSERT INTO patient(name, dateOfBirth) VALUES';
 
 // variables to be used
@@ -19,7 +19,7 @@ function insertRows() {
     let i = 0;
 
    if (i < names.length) {
-        let param = insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')';
+        let param = encodeURIComponent(insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')');
 
         // create a new xmlhttprequest
         let xhttp = new XMLHttpRequest();
