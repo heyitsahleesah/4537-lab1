@@ -20,14 +20,15 @@ function insertRows() {
 
    if (i < names.length) {
         let param = encodeURIComponent(insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')');
+        let url = endpoint + param;
 
         // create a new xmlhttprequest
         let xhttp = new XMLHttpRequest();
         console.log(param);
         // send POST request
-        xhttp.open('POST', endpoint, true)
+        xhttp.open('POST', url, true)
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhttp.send(param);
+        xhttp.send();
 
         // check status and display returned message
         xhttp.onreadystatechange = function () {
@@ -97,12 +98,12 @@ function queryDB() {
             let xhttp = new XMLHttpRequest();
             
             const param = encodeURIComponent(sqlQuery);
-            console.log(sqlQuery);
+            let url = endpoint + param;
 
             // send POST request
-            xhttp.open('POST', endpoint, true)
+            xhttp.open('POST', url, true)
             xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhttp.send(param);
+            xhttp.send();
 
             // check status and display returned message
             xhttp.onreadystatechange = function () {
