@@ -19,13 +19,10 @@ function insertRows() {
     let i = 0;
 
    if (i < names.length) {
-        insertPatientStatement += '(' + names[i] + ', ' + birthdays[i] + ')';
+        const param = insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')';
 
         // create a new xmlhttprequest
-        let xhttp = new XMLHttpRequest();
-
-        // create params and add to endpoint url for query
-        const param = sqlInsert;
+        let xhttp = new XMLHttpRequest();x
 
         // send POST request
         xhttp.open('POST', endpoint, true)
@@ -76,6 +73,7 @@ function queryDB() {
         if (sqlQuery.toLowerCase().startsWith("select")) {
             // create param to add to endpoint or query
             const param = encodeURIComponent(sqlQuery);
+            const url = endpoint + param;
 
             // create a new xmlhttprequest
             let xhttp = new XMLHttpRequest();
