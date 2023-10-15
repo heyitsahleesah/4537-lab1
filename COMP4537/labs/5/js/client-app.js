@@ -66,7 +66,7 @@ function queryDB() {
     } else if (invalidChars.test(sqlQuery)) {
         document.getElementById('returnMessage').innerHTML = invalidCharacters; 
         //  check if not select or insert
-    } else if (!sqlQuery.toLowerCase().startsWith("select") || !sqlQuery.toLowerCase().startsWith("insert")) {
+    } else if (!sqlQuery.toLowerCase().startsWith("select") && !sqlQuery.toLowerCase().startsWith("insert")) {
         document.getElementById('returnMessage').innerHTML = tryAgain; 
         //  proceed if input is acceptable
     } else {
