@@ -87,7 +87,7 @@ function queryDB() {
                     console.log('Response from server:', xhttp.responseText);
                     let display = document.getElementById('returnMessage');
                     let response = JSON.parse(xhttp.responseText)
-                    response.result.array.forEach((row) => {
+                    response.result.forEach((row) => {
                         let rowElement = document.createElement('div');
                         rowElement.textContent = `Patient ID: ${row.patientid}, Name: ${row.name}, Date of Birth: ${row.dateOfBirth}`;
                         // Append the new element to the display element
