@@ -5,7 +5,7 @@ const noQuery = 'Please input a SELECT or INSERT query.';
 const invalidCharacters = 'Input contains invalid characters. Please remove them.';
 const tryAgain = 'Must only be SELECT or INSERT methods. Please try again';
 const unexpected = 'Unexpected status code';
-const insertPatientStatement = 'INSERT INTO lab5_table(name, dateOfBirth) VALUES';
+const insertPatientStatement = 'INSERT INTO patient(name, dateOfBirth) VALUES';
 
 // variables to be used
 let response; 
@@ -35,9 +35,9 @@ function insertRows() {
                 console.log(xhttp.responseText);
                 response = JSON.parse(xhttp.responseText);
                 // TO DO: update with how the server will respond
-                document.getElementById('response').innerHTML = xhttp.responseText.message;
+                document.getElementById('response').innerHTML = xhttp.responseText.result;
             } else if (xhttp.status === 400) {
-                document.getElementById('response').innerHTML = xhttp.responseText.message;
+                document.getElementById('response').innerHTML = xhttp.responseText.result;
             }  else {
                 document.getElementById('response').innerHTML = unexpected + xhttp.status;
             }
@@ -88,9 +88,9 @@ function queryDB() {
                     console.log('Response from server:', xhttp.responseText);
                     const response = JSON.parse(xhttp.responseText)
                     // print definition if successful
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.message;
+                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
                 } else {
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.message;
+                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
                 } 
             }
         } else {
@@ -111,9 +111,9 @@ function queryDB() {
                     console.log(xhttp.responseText);
                     response = JSON.parse(xhttp.responseText);
                     // TO DO: update with how the server will respond
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.message;
+                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
                 } else if (xhttp.status === 400) {
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.message;
+                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
                 }  else {
                     document.getElementById('returnMessage').innerHTML = unexpected + xhttp.status;
                 }
