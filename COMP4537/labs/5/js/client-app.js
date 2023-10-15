@@ -85,9 +85,15 @@ function queryDB() {
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200){
                     console.log('Response from server:', xhttp.responseText);
+                    let display = document.getElementById('returnMessage');
                     let response = JSON.parse(xhttp.responseText)
-                    // print definition if successful
-                    document.getElementById('returnMessage').innerHTML = response.result;
+                    response.result.array.forEach((row) => {
+                        let rowElement = document.createElement('div');
+                        rowElement.textContent = `Patient ID: ${row.patientid}, Name: ${row.name}, Date of Birth: ${row.dateOfBirth}`;
+                        // Append the new element to the display element
+                        display.appendChild(rowElement);
+                    });
+
                 } else {
                     let response = JSON.parse(xhttp.responseText);
                     document.getElementById('returnMessage').innerHTML = response.result;
