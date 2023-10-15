@@ -87,12 +87,13 @@ function queryDB() {
                     console.log('Response from server:', xhttp.responseText);
                     let display = document.getElementById('returnMessage');
                     let response = JSON.parse(xhttp.responseText)
-                    
+
                     // parsing all of the rows is code adapted from chatgpt
                     response.result.forEach((row) => {
                         let rowElement = document.createElement('div');
-                        rowElement.textContent = '';
-                        rowElement.textContent = `Patient ID: ${row.patientid}, Name: ${row.name}, Date of Birth: ${row.dateOfBirth}`;
+                        let content = '';
+                        content += `Patient ID: ${row.patientid}, Name: ${row.name}, Date of Birth: ${row.dateOfBirth}`
+                        rowElement.textContent = content;
                         // Append the new element to the display element
                         display.appendChild(rowElement);
                     });
