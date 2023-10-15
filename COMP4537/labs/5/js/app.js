@@ -42,7 +42,7 @@ function insertRows() {
             } else if (xhttp.status === 400) {
                 document.getElementById('response').innerHTML = xhttp.responseText.message;
             }  else {
-                document.getElementById('response').innerHTML = 'Unexpected status code' + xhttp.status;
+                document.getElementById('response').innerHTML = unexpected + xhttp.status;
             }
         };
         // increment the i count for the next name and birthday 
@@ -75,7 +75,7 @@ function queryDB() {
     } else {
         if (sqlQuery.toLowerCase().startsWith("select")) {
             // create param to add to endpoint or query
-            const param = sqlQuery;
+            const param = encodeURIComponent(sqlQuery);
 
             // create a new xmlhttprequest
             let xhttp = new XMLHttpRequest();
@@ -99,7 +99,7 @@ function queryDB() {
             // create a new xmlhttprequest
             let xhttp = new XMLHttpRequest();
             
-            const param = sqlQuery;
+            const param = encodeURIComponent(sqlQuery);
             console.log(sqlQuery);
 
             // send POST request
