@@ -73,14 +73,14 @@ function queryDB() {
         if (sqlQuery.toLowerCase().startsWith("select")) {
             // create param to add to endpoint or query
             const param = encodeURIComponent(sqlQuery);
-            // const url = endpoint + param;
+            const url = endpoint + param;
 
             // create a new xmlhttprequest
             let xhttp = new XMLHttpRequest();
 
             // send GET request
-            xhttp.open('GET', endpoint, true);
-            console.log(xhttp.send(param));
+            xhttp.open('GET', url, true);
+            console.log(xhttp.send());
             // check for response
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200){
