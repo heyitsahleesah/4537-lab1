@@ -24,7 +24,8 @@ function insertRows() {
         patientValues += ","
         }
    }
-    let param = encodeURIComponent(insertPatientStatement += patientValues);
+    // let param = encodeURIComponent(insertPatientStatement += patientValues);
+    let param = encodeURIComponent("UPDATE patient SET name='joe joeson' WHERE name='jack ma'");
     let url = endpoint + param;
 
     // create a new xmlhttprequest
