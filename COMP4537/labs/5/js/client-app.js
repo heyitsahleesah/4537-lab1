@@ -80,7 +80,6 @@ function queryDB() {
 
             // send GET request
             xhttp.open('GET', endpoint, true);
-            xhttp.send(param);
             console.log(xhttp.send(param));
             // check for response
             xhttp.onreadystatechange = function () {
