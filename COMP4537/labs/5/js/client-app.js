@@ -57,7 +57,7 @@ function queryDB() {
     const sqlQuery = document.getElementById('query').value;
 
     // Regular expression to disallow numbers and special characters [chatgpt]
-    const invalidChars = /[!@#$%^&()_+{}\[\]:;<>,.?~\\\/'"\-=]/;
+    const invalidChars = /[!@#$%^&_+{}\[\]:;<>,.?~\\\/"\-=]/;
 
     // check for empty input
     if (!sqlQuery || sqlQuery.trim() === '') {
