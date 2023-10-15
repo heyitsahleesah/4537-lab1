@@ -92,16 +92,27 @@ function queryDB() {
                     let display = document.getElementById('returnMessage');
                     display.innerHTML = '';
                     let response = JSON.parse(xhttp.responseText)
+                    let maxRowsToDisplay = 10; // Set the maximum number of rows to display
 
-                    // parsing all of the rows is code adapted from [chatgpt]
-                    response.result.forEach((row) => {
+                    // Iterate through the result array and limit the number of displayed rows [chatgpt]
+                    for (let i = 0; i < Math.min(maxRowsToDisplay, response.result.length); i++) {
+                        let row = response.result[i];
                         let rowElement = document.createElement('div');
-                        let content = '';
-                        content += `Patient ID: ${row.patientid}, Name: ${row.name}, Date of Birth: ${row.dateOfBirth}`
+                        let content = `Patient ID: ${row.patientid}, Name: ${row.name}, Date of Birth: ${row.dateOfBirth}`;
                         rowElement.textContent = content;
                         // Append the new element to the display element
                         display.appendChild(rowElement);
-                    });
+                    }
+
+                    // // parsing all of the rows is code adapted from [chatgpt]
+                    // response.result.forEach((row) => {
+                    //     let rowElement = document.createElement('div');
+                    //     let content = '';
+                    //     content += `Patient ID: ${row.patientid}, Name: ${row.name}, Date of Birth: ${row.dateOfBirth}`
+                    //     rowElement.textContent = content;
+                    //     // Append the new element to the display element
+                    //     display.appendChild(rowElement);
+                    // });
 
                 } else {
                     let response = JSON.parse(xhttp.responseText);
