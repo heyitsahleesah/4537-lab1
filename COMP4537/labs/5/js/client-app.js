@@ -89,7 +89,7 @@ function queryDB() {
                 if (xhttp.readyState === 4 && xhttp.status === 200){
                     console.log('Response from server:', xhttp.responseText);
                     let display = document.getElementById('returnMessage');
-                    // display.innerHTML = '';
+                    display.innerHTML = '';
                     let response = JSON.parse(xhttp.responseText)
                     let maxRowsToDisplay = 10; // Set the maximum number of rows to display
 
