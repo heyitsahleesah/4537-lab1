@@ -1,19 +1,20 @@
 <html>
 <head> 
-    <title>Insert Rows</title>
+    <title>DB Intro</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body>
     <div class="container">
         <div class="insertRows">
-            <h3 class="title">Insert Rows</h3>
+            <p class="title">Insert Rows</p>
             <button class="button"  onclick="insertRows()">Insert Rows</button>
             <div id="response"></div><br><br>
         </div>
         <div class="queryDB">
             <label for="query">What's your query?</label><br>
-            <textarea id="query" rows="4" cols="50"></textarea><br>
-            <button class="button"  onclick="queryDB()">Submit Query</button><br>
-            <div id="errorMessage"></div><br><br>
+            <textarea id="query" rows="4" cols="50"></textarea><br><br>
+            <button class="button" onclick="queryDB()">Submit Query</button><br>
+            <div id="returnMessage"></div><br><br>
         </div>
     </div>
     <script src="./js/app.js"></script>

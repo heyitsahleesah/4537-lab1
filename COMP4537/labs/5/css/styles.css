@@ -1,0 +1,38 @@
+/* Define the body and container */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the container's height to the viewport height for vertical centering */
+}
+
+.title {
+    text-align: center;
+}
+
+.queryDB {
+    text-align: center;
+}
+
+/* Styles for the button */
+.button {
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Show a hand cursor on hover */
+    font-size: 16px; /* Font size */
+    margin: 0 10px;
+}
+
+/* Add a hover effect */
+.button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
