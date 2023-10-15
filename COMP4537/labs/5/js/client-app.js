@@ -19,7 +19,8 @@ function insertRows() {
     let birthdays = ['1901-01-01', '1941-01-01', '1961-01-30', '1990-01-01'];
 
    if (i < names.length) {
-        let param = encodeURIComponent(insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')');
+        let resetInsertPatient = insertPatientStatement;
+        let param = encodeURIComponent(resetInsertPatient += ' (' + names[i] + ', ' + birthdays[i] + ')');
         let url = endpoint + param;
 
         // create a new xmlhttprequest
