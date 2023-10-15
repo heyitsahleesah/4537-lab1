@@ -9,14 +9,14 @@ let insertPatientStatement = 'INSERT INTO patient(name, dateOfBirth) VALUES';
 
 // variables to be used
 let response; 
+let i = 0;
 
 // create endpoint for both functions
 const endpoint = 'https://www.wilwscott.com/COMP4537/labs/5/api/v1/sql/';
 
 function insertRows() {
-    names = ['Sarah Brown', 'John Smith', 'Jack Ma', 'Elon Musk'];
-    birthdays = ['1901-01-01', '1941-01-01', '1961-01-30', '199-01-01'];
-    let i = 0;
+    let names = ['Sarah Brown', 'John Smith', 'Jack Ma', 'Elon Musk'];
+    let birthdays = ['1901-01-01', '1941-01-01', '1961-01-30', '1990-01-01'];
 
    if (i < names.length) {
         let param = encodeURIComponent(insertPatientStatement += ' (' + names[i] + ', ' + birthdays[i] + ')');
