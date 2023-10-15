@@ -23,7 +23,7 @@ function insertRows() {
 
         // create a new xmlhttprequest
         let xhttp = new XMLHttpRequest();
-
+        console.log(param);
         // send POST request
         xhttp.open('POST', endpoint, true)
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
