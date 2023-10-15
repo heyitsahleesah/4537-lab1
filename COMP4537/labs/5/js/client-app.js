@@ -5,6 +5,7 @@ const noQuery = 'Please input a SELECT or INSERT query.';
 const invalidCharacters = 'Input contains invalid characters. Please remove them.';
 const tryAgain = 'Must only be SELECT or INSERT methods. Please try again.';
 const unexpected = 'Unexpected status code ';
+const invalidSQL = 'That is an invalid SQL statement. Cannot process.'
 let insertPatientStatement = 'INSERT INTO patient(name, dateOfBirth) VALUES';
 
 // variables to be used
@@ -103,7 +104,7 @@ function queryDB() {
                         display.appendChild(rowElement);
                     });
                 } else if (xhttp.status === 500) {
-                    document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
+                    document.getElementById('returnMessage').innerHTML = invalidSQL;
                 } else {
                     document.getElementById('returnMessage').innerHTML = unexpected + xhttp.status;
                 }
@@ -130,7 +131,9 @@ function queryDB() {
                     //deterimine display if anything other than 200 shows
                 } else if (xhttp.status === 400) {
                     document.getElementById('returnMessage').innerHTML = xhttp.responseText.result;
-                }  else {
+                } else if (xhttp.status === 500) {
+                    document.getElementById('returnMessage').innerHTML = invalidSQL;
+                } else {
                     document.getElementById('returnMessage').innerHTML = unexpected + xhttp.status;
                 }
             };
