@@ -13,24 +13,26 @@ let response;
 // create endpoint for both functions
 const endpoint = 'https://www.wilwscott.com/COMP4537/labs/5/api/v1/sql/';
 
+// sends a post call to the server to insert the specified info
 function insertRows() {
+    // values to be inserted
     let names = ['Sarah Brown', 'John Smith', 'Jack Ma', 'Elon Musk'];
     let birthdays = ['1901-01-01', '1941-01-01', '1961-01-30', '1990-01-01'];
     let patientValues = '';
 
+    // insert all values with each click
    for (let i = 0; i < names.length; i++) {
         patientValues += "('" + names[i] + "', '" + birthdays[i] + "')"
         if (i < names.length -1 ){
         patientValues += ","
         }
    }
-    // let param = encodeURIComponent(insertPatientStatement += patientValues);
-    let param = encodeURIComponent("UPDATE patient SET name='joe joeson' WHERE name='jack ma'");
+    let param = encodeURIComponent(insertPatientStatement += patientValues);
     let url = endpoint + param;
 
     // create a new xmlhttprequest
     let xhttp = new XMLHttpRequest();
-    console.log(param);
+
     // send POST request
     xhttp.open('POST', url, true)
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -41,9 +43,10 @@ function insertRows() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             console.log(xhttp.responseText.result);
             let response = JSON.parse(xhttp.responseText);
-            // TO DO: update with how the server will respond
+            // display success
             document.getElementById('response').innerHTML = response.result;
         } else if (xhttp.status === 400) {
+            // display any errors
             let response = JSON.parse(xhttp.responseText);
             document.getElementById('response').innerHTML = response.result;
         }  else {
@@ -52,9 +55,9 @@ function insertRows() {
     };
 }
 
-
+// sends a GET or POST request depending on whether INSERT or SELECT was input in the textarea
 function queryDB() {
-    // get word from text box
+    // get query from text box
     const sqlQuery = document.getElementById('query').value;
 
     // Regular expression to disallow numbers and special characters [chatgpt]
@@ -67,9 +70,9 @@ function queryDB() {
     } else if (invalidChars.test(sqlQuery)) {
         document.getElementById('returnMessage').innerHTML = invalidCharacters; 
         //  check if not select or insert
-    // } else if (!sqlQuery.toLowerCase().startsWith("select") && !sqlQuery.toLowerCase().startsWith("insert")) {
-    //     document.getElementById('returnMessage').innerHTML = tryAgain; 
-    //     //  proceed if input is acceptable
+    } else if (!sqlQuery.toLowerCase().startsWith("select") && !sqlQuery.toLowerCase().startsWith("insert")) {
+        document.getElementById('returnMessage').innerHTML = tryAgain; 
+        //  proceed if input is acceptable
     } else {
         if (sqlQuery.toLowerCase().startsWith("select")) {
             // create param to add to endpoint or query
@@ -90,7 +93,7 @@ function queryDB() {
                     display.innerHTML = '';
                     let response = JSON.parse(xhttp.responseText)
 
-                    // parsing all of the rows is code adapted from chatgpt
+                    // parsing all of the rows is code adapted from [chatgpt]
                     response.result.forEach((row) => {
                         let rowElement = document.createElement('div');
                         let content = '';
@@ -122,8 +125,9 @@ function queryDB() {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
                     console.log(xhttp.responseText);
                     let response = JSON.parse(xhttp.responseText);
-                    // TO DO: update with how the server will respond
+                    // display on success
                     document.getElementById('returnMessage').innerHTML = response.result;
+                    //deterimine display if anything other than 200 shows
                 } else if (xhttp.status === 400) {
                     let response = JSON.parse(xhttp.responseText);
                     document.getElementById('returnMessage').innerHTML = response.result;
