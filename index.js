@@ -81,7 +81,7 @@ const server = http.createServer((req, res) => {
         }
         });
     }   // Handle lab 5 HTML pages
-        else if ( q.pathname === '/COMP4537/labs/4/index.html'|| q.pathname === '/COMP4537/labs/4/search.html' || q.pathname === '/COMP4537/labs/4/store.html') {
+        else if ( q.pathname === '/COMP4537/labs/5/index.html') {
         const staticFilePath = path.join(__dirname, q.pathname);
         fs.readFile(staticFilePath, (err, data) => {
         if (err) {
