@@ -34,6 +34,7 @@ function addDefinition() {
         xhttp.open('POST', endpoint, true)
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(param);
+        console.log(param);
 
         let response; 
 
