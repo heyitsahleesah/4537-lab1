@@ -5,7 +5,7 @@ const noQuery = 'Please input a SELECT or INSERT query.';
 const invalidCharacters = 'Input contains invalid characters. Please remove them.';
 const tryAgain = 'Must only be SELECT or INSERT methods. Please try again';
 const unexpected = 'Unexpected status code';
-const insertPatientStatement = 'INSERT INTO patient(name, dateOfBirth) VALUES';
+let insertPatientStatement = 'INSERT INTO patient(name, dateOfBirth) VALUES';
 
 // variables to be used
 let response; 
