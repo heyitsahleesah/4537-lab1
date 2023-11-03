@@ -1,0 +1,25 @@
+<html>
+<head>
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
+    <title>Store Your Definition</title>
+</head>
+<body onload="updateDropdown()">
+    <div class="container">
+        <h1 class="title">Store a Word and Definition</h1>
+        <label for="word">Word:</label><br>
+        <input type="text" id="word" name="word"><br><br>  
+        <label for="word-languages">Choose a Word language:</label>
+        <select name="word-languages" id="word-languages">
+        <label for="definition">Definition:</label><br>
+        <textarea id="definition" rows="4" cols="50"></textarea><br><br>
+        <label for="definition-languages">Choose a Definition language:</label>
+        <select name="definition-languages" id="definition-languages">
+        </select>
+        <br><br>
+        <div id="output"></div>
+        <!-- Button to add entry -->
+        <button class="add-button" onclick="addDefinition()">Submit</button>
+    </div>
+    <script src="./js/server1.js"></script>
+</body>
+</html>
