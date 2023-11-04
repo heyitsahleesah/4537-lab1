@@ -152,6 +152,7 @@ function patchDefinition(data) {
                 // append all to output div
                 outputDiv.innerHTML = returnMessage;
                 outputDiv.innerHTML = entryInfo;
+                document.getElementById('get-button').style.display = '';
             } else if (xhttp.status === 400 || xhttp.status === 502) {
                 let response = JSON.parse(xhttp.responseText);
                 document.getElementById('output').innerHTML = `Message: ${response["message"]}`;
@@ -242,6 +243,7 @@ function deleteDefinition(data) {
                 let returnMessage = response["message"];             
                 // append all to output div
                 wordContainer.innerHTML = returnMessage;
+                document.getElementById('get-button').style.display = '';
             } else if (xhttp.status === 400 || xhttp.status === 502) {
                 let response = JSON.parse(xhttp.responseText);
                 document.getElementById('output').innerHTML = `Message: ${response["message"]}`;
