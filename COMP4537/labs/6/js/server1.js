@@ -257,8 +257,8 @@ function deleteDefinition(data) {
         noButton.style.display = 'none';
     }
 
-    outputDiv.appendChild(deleteQuestion);
-    outputDiv.appendChild(yesButton);
-    outputDiv.appendChild(noButton); 
-    document.getElementById('get-button').style.display = 'none';
+    wordContainer.appendChild(deleteQuestion);
+    wordContainer.appendChild(yesButton);
+    wordContainer.appendChild(noButton); 
+    wordContainer.getElementById('get-button').style.display = 'none';
 }
