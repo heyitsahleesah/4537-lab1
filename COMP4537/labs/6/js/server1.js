@@ -168,7 +168,7 @@ function patchDefinition(data) {
         areYouSureMessage.style.display = 'none';
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
-        document.getElementById('get-button').style.display = '';
+        document.getElementById('add-button').style.display = '';
     }
 
     // ask the user if they would like to update
