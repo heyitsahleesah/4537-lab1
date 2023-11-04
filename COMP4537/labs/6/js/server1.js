@@ -260,5 +260,5 @@ function deleteDefinition(data) {
     wordContainer.appendChild(deleteQuestion);
     wordContainer.appendChild(yesButton);
     wordContainer.appendChild(noButton); 
-    wordContainer.getElementById('get-button').style.display = 'none';
+    document.getElementById('get-button').style.display = 'none';
 }
