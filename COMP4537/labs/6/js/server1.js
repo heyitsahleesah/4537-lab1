@@ -53,38 +53,28 @@ function getDefinition() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
 
-    // check for empty input
-    if (!wordSearch || wordSearch.trim() === '') {
-        document.getElementById('wordContainer').innerHTML = emptySearch;
-        // check for invalid characters
-    } else if (invalidChars.test(wordSearch)) {
-        document.getElementById('wordContainer').innerHTML = invalidCharacters; 
-        //  proceed if input is acceptable
-    } else {
-        // create param to add to endpoint or query
-        const param = selectWord + `${wordSearch}`
-        const url = endpoint + wordDefEndpoint + param;
+    const url = endpoint + wordDefEndpoint + wordSearch;
 
-        // create a new xmlhttprequest
-        let xhttp = new XMLHttpRequest();
-        
-        // send GET request
-        xhttp.open('GET', url, true);
-        xhttp.send();
+    // create a new xmlhttprequest
+    let xhttp = new XMLHttpRequest();
+    
+    // send GET request
+    xhttp.open('GET', url, true);
+    xhttp.send();
 
-        // check for response
-        xhttp.onreadystatechange = function () {
-            if (xhttp.readyState === 4 && xhttp.status === 200){
-                console.log('Response from server:', xhttp.responseText);
-                const response = JSON.parse(xhttp.responseText)
-                // print definition if successful
-                document.getElementById('wordContainer').innerHTML = requestString + response.word + '<br>' + response.definition + '<br>' + response.word-language + '<br>' + response.definition-language;
-            } else {
-                document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
-            }
+    // check for response
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4 && xhttp.status === 200){
+            console.log('Response from server:', xhttp.responseText);
+            const response = JSON.parse(xhttp.responseText)
+            // print definition if successful
+            document.getElementById('wordContainer').innerHTML = requestString + response.word + '<br>' + response.definition + '<br>' + response.word-language + '<br>' + response.definition-language;
+        } else {
+            document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
         }
-    } 
-}
+    }
+} 
+
 
 function addDefinition() {
     // get the word and definition from the html text box and area
@@ -145,6 +135,7 @@ function addDefinition() {
     };
 }
 
+// if the word already exists, check if the user wants to send a PATCH request to update the table
 function patchDefinition(data) {
     console.log(data)
     let outputDiv = document.getElementById('output');
