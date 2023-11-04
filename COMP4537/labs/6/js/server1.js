@@ -152,7 +152,7 @@ function patchDefinition(data) {
                 // append all to output div
                 outputDiv.innerHTML = returnMessage;
                 outputDiv.innerHTML = entryInfo;
-                document.getElementById('get-button').style.display = '';
+                document.getElementById('add-button').style.display = '';
             } else if (xhttp.status === 400 || xhttp.status === 502) {
                 let response = JSON.parse(xhttp.responseText);
                 document.getElementById('output').innerHTML = `Message: ${response["message"]}`;
