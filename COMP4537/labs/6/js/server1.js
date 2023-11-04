@@ -199,7 +199,7 @@ function getDefinition() {
             console.log('Response from server:', xhttp.responseText);
             const response = JSON.parse(xhttp.responseText);
             // print definition if successful
-            document.getElementById('wordContainer').innerHTML = requestString + response.word + '<br>' + response.definition + '<br>' + response.word-language + '<br>' + response.definition-language;
+            document.getElementById('wordContainer').innerHTML = `${requestString} ${response.word} <br> ${response.definitio} <br> ${response['word_language']} <br> ${response['definition_language']}`;
             deleteDefinition(response.word);
         } else {
             document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
