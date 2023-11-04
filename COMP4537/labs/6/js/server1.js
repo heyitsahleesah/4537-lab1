@@ -64,7 +64,7 @@ function getDefinition() {
 
     // check for response
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 200){
+        if (xhttp.readyState === 4 && xhttp.status === 201){
             console.log('Response from server:', xhttp.responseText);
             const response = JSON.parse(xhttp.responseText)
             // print definition if successful
@@ -161,7 +161,7 @@ function patchDefinition(data) {
 
         // check status and display returned message
         xhttp.onreadystatechange = function () {
-            if (xhttp.readyState === 4 && xhttp.status === 201) {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
                 console.log(xhttp.responseText);
                 // get the response
                 let response = JSON.parse(xhttp.responseText);
