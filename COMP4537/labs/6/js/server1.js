@@ -52,7 +52,6 @@ function updateDropdown() {
 function getDefinition() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
-
     const url = endpointRoot + 'definition/' + wordSearch;
 
     // create a new xmlhttprequest
