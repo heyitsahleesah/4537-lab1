@@ -1,10 +1,10 @@
 // store strings here
 const dropdownSelect = 'SELECT DISTINCT language FROM language';
 const selectWord = 'SELECT (word, definition, word-language, definition-language) FROM ENTRY WHERE word=';
-const noWord = 'Please input both a word and definition.';
+const noWord = 'Please input both a word and definition. Also select languages for each.';
 const emptySearch = 'Please input a word.';
 const unexpected = 'Unexpected status code';
-const requestString = "Request: ";
+const requestString = "Request returned: ";
 
 // create endpoint for both functions
 const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6';
@@ -84,4 +84,42 @@ function getDefinitions() {
             }
         }
     } 
+}
+
+function addDefinition() {
+      // get the word and definition from the html text box and area
+      const word = document.getElementById('word').value;
+      const definition = document.getElementById('definition').value;
+      const wordLanguage = document.getElementById('wordLanguages').value;
+      const defLanguage = document.getElementById('definitionLanguages').value;
+      
+  
+      // create a new xmlhttprequest
+      let xhttp = new XMLHttpRequest();
+  
+      if (!word || !definition || !wordLanguage || !defLanguage || word.trim() === '' || definition.trim() ==='') {
+          document.getElementById('output').innerHTML = noWord;
+      } else {
+          // create params and add to endpoint url for query
+          const param = `INSERT (${word}, ${definition}, ${wordLanguage}, ${defLanguage}) INTO ENTRY`;
+          const url = endpointRoot + wordDefEndpoint + param;
+  
+          // send POST request
+          xhttp.open('POST', url, true)
+          xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          xhttp.send();
+  
+          // check status and display returned message
+          xhttp.onreadystatechange = function () {
+              if (xhttp.readyState === 4 && xhttp.status === 200) {
+                  console.log(xhttp.responseText);
+                  let response = JSON.parse(xhttp.responseText);
+                  document.getElementById('output').innerHTML = requestString + "<br> word: " + response.word + "<br> definition: " + response.definition + "<br> word language: " + response.word_language + "<br> definition language: " + response.definition_language + "<br> entry number: " + response.total;
+              } else if (xhttp.status === 400) {
+                  document.getElementById('output').innerHTML = xhttp.responseText.message;
+              }  else {
+                  document.getElementById('output').innerHTML = unexpected + xhttp.status;
+              }
+          };
+      }
 }
