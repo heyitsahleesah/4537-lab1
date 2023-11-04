@@ -135,10 +135,10 @@ function addDefinition() {
             let response = JSON.parse(xhttp.responseText)
             document.getElementById('output').innerHTML = response.message;
         }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
-            // let response = JSON.parse(xhttp.responseText)
+            let response = JSON.parse(xhttp.responseText)
             console.log(xhttp.responseText)
-            // document.getElementById('output').innerHTML = `Error: ${response.error} <br> Message: ${response.message}`;
-            // patchDefinition(data)
+            document.getElementById('output').innerHTML = `Error: ${response.error} <br> Message: ${response.message}`;
+            patchDefinition(data)
         } else {
             document.getElementById('output').innerHTML = unexpected + xhttp.status;
         }
