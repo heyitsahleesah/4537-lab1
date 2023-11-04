@@ -29,13 +29,13 @@ function updateDropdown() {
             console.log('Response from server:', xhttp.responseText);
             // get the dropdown for the options
             let defLanguageDisplay = document.getElementById('definitionLanguages');
-            // defLanguageDisplay.innerHTML = '';
+            defLanguageDisplay.innerHTML = '';
             let wordLanguageDisplay = document.getElementById('wordLanguages');
-            // wordLanguageDisplay.innerHTML = '';
+            wordLanguageDisplay.innerHTML = '';
             let response = JSON.parse(xhttp.responseText)
 
             // parsing all of the rows is code adapted from [chatgpt]
-            for (let result in response) {
+            for (let result of response) {
                 let optionElement = document.createElement('option');
                 // set the value and content of dropdown languages to languages from SQL
                 optionElement.value = result.language_name;
