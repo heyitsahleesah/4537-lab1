@@ -3,7 +3,8 @@ const selectWord = 'SELECT (word, definition, word-language, definition-language
 const noWord = 'Please input both a word and definition. Also select languages for each.';
 const emptySearch = 'Please input a word.';
 const unexpected = 'Unexpected status code';
-const requestString = "Request returned: ";
+const requestString = 'Request returned: ';
+const patchQuestion = 'Would you like to update the entry? <br>'
 
 // create endpoint for both functions
 const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6/api/v1/';
@@ -117,12 +118,87 @@ function addDefinition() {
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState === 4 && xhttp.status === 201) {
             console.log(xhttp.responseText);
+            // get the response
             let response = JSON.parse(xhttp.responseText);
-            document.getElementById('output').innerHTML = requestString + "<br> word: " + response.word + "<br> definition: " + response.definition + "<br> word language: " + response.word_language + "<br> definition language: " + response.definition_language + "<br> entry number: " + response.total;
-        } else if (xhttp.status === 400) {
+            // get the output div
+            let outputDiv = document.getElementById('output')
+            // get the message
+            let returnMessage = response.message + '<br>';
+            // get the word entry info 
+            let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
+        
+            // append all to output div
+            outputDiv.appendChild(returnMessage);
+            outputDiv.appendChild(entryInfo);
+
+        } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
             document.getElementById('output').innerHTML = xhttp.responseText.message;
-        }  else {
+        }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
+            document.getElementById('output').innerHTML = xhttp.responseText.message;
+            patchDefinition(data)
+        } else {
             document.getElementById('output').innerHTML = unexpected + xhttp.status;
         }
     };
+}
+
+function patchDefinition(data) {
+    let outputDiv = document.getElementById('output');
+
+    // create a yes button
+    let yesButton = document.createElement('Button');
+    yesButton.textContent = "Yes";
+    // yes button functionality to send PATCH request
+    yesButton.onclick = function () {
+        const jsonString = JSON.stringify(data);
+        console.log(jsonString);
+
+        // create a new xmlhttprequest
+        let xhttp = new XMLHttpRequest();
+
+        // create params and add to endpoint url for query
+        const url = endpointRoot + 'definition/';
+
+        // send POST request
+        xhttp.open('PATCH', url, true)
+        xhttp.setRequestHeader('Content-type', 'application/json');
+        xhttp.send(jsonString);
+
+        // check status and display returned message
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState === 4 && xhttp.status === 201) {
+                console.log(xhttp.responseText);
+                // get the response
+                let response = JSON.parse(xhttp.responseText);
+                // get the output div
+                let outputDiv = document.getElementById('output')
+                // get the message
+                let returnMessage = response.message + '<br>';
+                // get the word entry info 
+                let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
+            
+                // append all to output div
+                outputDiv.appendChild(returnMessage);
+                outputDiv.appendChild(entryInfo);
+            }
+        }
+    }
+
+    // create a no button
+    let noButton = document.createElement('Button');
+    noButton.textContent = "No";
+    // Handle the no functionality
+    noButton.onclick = function () {
+        areYouSureMessage.style.display = "none";
+        yesButton.style.display = "none";
+        noButton.style.display = "none";
+    }
+
+    // ask the user if they would like to update
+    let areYouSureMessage = document.createElement('p');
+    areYouSureMessage.textContent = patchQuestion;
+
+    outputDiv.appendChild(areYouSureMessage);
+    outputDiv.appendChild(yesButton);
+    outputDiv.appendChild(noButton); 
 }
