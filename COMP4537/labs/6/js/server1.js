@@ -109,7 +109,7 @@ function addDefinition() {
 
     // check status and display returned message
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 200) {
+        if (xhttp.readyState === 4 && xhttp.status === 201) {
             console.log(xhttp.responseText);
             // get the response
             let response = JSON.parse(xhttp.responseText);
