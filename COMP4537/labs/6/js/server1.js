@@ -52,11 +52,8 @@ function updateDropdown() {
 function getDefinition() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
-    const sendWord = {
-        word: wordSearch
-    }
-    const sendString = JSON.stringify(sendWord)
-    const url = endpointRoot + 'definition/' + sendString;
+ 
+    const url = endpointRoot + 'definition/' + wordSearch;
 
     // create a new xmlhttprequest
     let xhttp = new XMLHttpRequest();
@@ -171,7 +168,7 @@ function patchDefinition(data) {
                 // get the output div
                 let outputDiv = document.getElementById('output');
                 // get the message
-                let returnMessage = response.message;
+                let returnMessage = response["message"];
                 // get the word entry info 
                 let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
             
