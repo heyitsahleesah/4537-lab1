@@ -197,10 +197,11 @@ function patchDefinition(data) {
     // ask the user if they would like to update
     let areYouSureMessage = document.createElement('p');
     areYouSureMessage.textContent = patchQuestion;
+    let space = document.createElement('p').textContent = ' ';
 
     outputDiv.appendChild(areYouSureMessage);
     outputDiv.appendChild(yesButton);
-    outputDiv.appendChild(' ');
+    outputDiv.appendChild(space);
     outputDiv.appendChild(noButton); 
     document.getElementById('add-button').style.display = 'none';
 }
