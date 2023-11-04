@@ -53,7 +53,7 @@ function getDefinition() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
 
-    const url = endpoint + wordDefEndpoint + wordSearch;
+    const url = endpointRoot + 'definition/' + wordSearch;
 
     // create a new xmlhttprequest
     let xhttp = new XMLHttpRequest();
