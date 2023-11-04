@@ -5,6 +5,9 @@ const emptySearch = 'Please input a word.';
 const unexpected = 'Unexpected status code';
 const requestString = 'Request returned: ';
 const patchQuestion = 'Would you like to update the entry?'
+const deleteMessage = 'Would you like to delete this entry?'
+const yes = 'yes';
+const no = 'no';
 
 // create endpoint for both functions
 const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6/api/v1/';
@@ -49,33 +52,7 @@ function updateDropdown() {
     }
 }
 
-function getDefinition() {
-    // get word from text box
-    const wordSearch = document.getElementById('wordSearch').value;
- 
-    const url = endpointRoot + 'definition/' + wordSearch;
-
-    // create a new xmlhttprequest
-    let xhttp = new XMLHttpRequest();
-    
-    // send GET request
-    xhttp.open('GET', url, true);
-    xhttp.send();
-
-    // check for response
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 201){
-            console.log('Response from server:', xhttp.responseText);
-            const response = JSON.parse(xhttp.responseText)
-            // print definition if successful
-            document.getElementById('wordContainer').innerHTML = requestString + response.word + '<br>' + response.definition + '<br>' + response.word-language + '<br>' + response.definition-language;
-        } else {
-            document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
-        }
-    }
-} 
-
-
+// adds definitions based on the user input
 function addDefinition() {
     // get the word and definition from the html text box and area
     const word = document.getElementById('word').value;
@@ -142,7 +119,7 @@ function patchDefinition(data) {
 
     // create a yes button
     let yesButton = document.createElement('Button');
-    yesButton.textContent = "Yes";
+    yesButton.textContent = yes;
     // yes button functionality to send PATCH request
     yesButton.onclick = function () {
         const jsonString = JSON.stringify(data);
@@ -177,14 +154,14 @@ function patchDefinition(data) {
                 outputDiv.innerHTML = entryInfo;
             } else if (xhttp.status === 400 || xhttp.status === 502) {
                 let response = JSON.parse(xhttp.responseText);
-                document.getElementById('output').innerHTML = `Message: ${response.message}`;
+                document.getElementById('output').innerHTML = `Message: ${response["message"]}`;
             }
         }
     }
 
     // create a no button
     let noButton = document.createElement('Button');
-    noButton.textContent = "No";
+    noButton.textContent = no;
     // Handle the no functionality
     noButton.onclick = function () {
         areYouSureMessage.style.display = 'none';
@@ -200,4 +177,88 @@ function patchDefinition(data) {
     outputDiv.appendChild(yesButton);
     outputDiv.appendChild(noButton); 
     document.getElementById('add-button').style.display = 'none';
+}
+
+// gets definitions based on the user input
+function getDefinition() {
+    // get word from text box
+    const wordSearch = document.getElementById('wordSearch').value;
+ 
+    const url = endpointRoot + 'definition/' + wordSearch;
+
+    // create a new xmlhttprequest
+    let xhttp = new XMLHttpRequest();
+    
+    // send GET request
+    xhttp.open('GET', url, true);
+    xhttp.send();
+
+    // check for response
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4 && xhttp.status === 200){
+            console.log('Response from server:', xhttp.responseText);
+            const response = JSON.parse(xhttp.responseText);
+            // print definition if successful
+            document.getElementById('wordContainer').innerHTML = requestString + response.word + '<br>' + response.definition + '<br>' + response.word-language + '<br>' + response.definition-language;
+            deleteDefinition(response.word);
+        } else {
+            document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
+        }
+    }
+} 
+
+// function called from search.html to delete entry if the user approves
+function deleteDefinition(data) {
+    let wordContainer = document.getElementById('wordContainer');
+    // determine if the user wants to delete the entry
+    let deleteQuestion = document.createElement('p');
+    deleteQuestion.innerHTML = deleteMessage;
+
+    let yesButton = document.createElement('Button');
+    yesButton.textContent = yes;
+    // yes button functionality to send PATCH request
+    yesButton.onclick = function () {
+        const jsonString = JSON.stringify(data);
+        console.log(jsonString);
+
+        // create a new xmlhttprequest
+        let xhttp = new XMLHttpRequest();
+
+        // create params and add to endpoint url for query
+        const url = endpointRoot + 'definition/';
+
+        // send POST request
+        xhttp.open('DELETE', url, true)
+        xhttp.setRequestHeader('Content-type', 'application/json');
+        xhttp.send(jsonString);
+
+        // check status and display returned message
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
+                console.log(xhttp.responseText);
+                // get the response
+                let response = JSON.parse(xhttp.responseText);
+                let returnMessage = response["message"];             
+                // append all to output div
+                wordContainer.innerHTML = returnMessage;
+            } else if (xhttp.status === 400 || xhttp.status === 502) {
+                let response = JSON.parse(xhttp.responseText);
+                document.getElementById('output').innerHTML = `Message: ${response["message"]}`;
+            }
+        }
+    }
+    // create a no button
+    let noButton = document.createElement('Button');
+    noButton.textContent = no;
+    // Handle the no functionality
+    noButton.onclick = function () {
+        deleteQuestion.style.display = 'none';
+        yesButton.style.display = 'none';
+        noButton.style.display = 'none';
+    }
+
+    outputDiv.appendChild(deleteQuestion);
+    outputDiv.appendChild(yesButton);
+    outputDiv.appendChild(noButton); 
+    document.getElementById('get-button').style.display = 'none';
 }
