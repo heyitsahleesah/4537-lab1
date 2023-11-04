@@ -202,7 +202,7 @@ function getDefinition() {
             const response = JSON.parse(xhttp.responseText);
             // print definition if successful
             document.getElementById('wordContainer').innerHTML = `${requestString} <br> Word: ${response.entry.word} <br> Definition: ${response.entry.definition} <br> Word Language: ${response.entry['word_language']} <br> Definition Language: ${response.entry['definition_language']}`;
-            deleteDefinition(response.word);
+            deleteDefinition(response.entry.word);
         } else {
             document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
         }
@@ -220,14 +220,12 @@ function deleteDefinition(data) {
     yesButton.textContent = yes;
     // yes button functionality to send PATCH request
     yesButton.onclick = function () {
-        const jsonString = JSON.stringify(data);
-        console.log(jsonString);
 
         // create a new xmlhttprequest
         let xhttp = new XMLHttpRequest();
 
         // create params and add to endpoint url for query
-        const url = endpointRoot + 'definition/';
+        const url = endpointRoot + 'definition/' + data;
 
         // send POST request
         xhttp.open('DELETE', url, true)
