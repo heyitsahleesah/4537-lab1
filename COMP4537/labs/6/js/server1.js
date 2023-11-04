@@ -173,8 +173,8 @@ function patchDefinition(data) {
                 let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
             
                 // append all to output div
-                outputDiv.appendChild(returnMessage);
-                outputDiv.appendChild(entryInfo);
+                outputDiv.innerHTML = returnMessage;
+                outputDiv.innerHTML = entryInfo;
             } else if (xhttp.status === 400 || xhttp.status === 502) {
                 let response = JSON.parse(xhttp.responseText);
                 document.getElementById('output').innerHTML = `Message: ${response.message}`;
