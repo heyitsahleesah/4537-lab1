@@ -35,15 +35,15 @@ function updateDropdown() {
             let response = JSON.parse(xhttp.responseText)
 
             // parsing all of the rows is code adapted from [chatgpt]
-            response.result.forEach((lingo) => {
+            for (let result in response) {
                 let optionElement = document.createElement('option');
                 // set the value and content of dropdown languages to languages from SQL
-                optionElement.value = lingo.language_name;
-                optionElement.textContent = lingo.language_name;
+                optionElement.value = result.language_name;
+                optionElement.textContent = result.language_name;
                 // Append the new element to the display element
                 defLanguageDisplay.appendChild(optionElement);
                 wordLanguageDisplay.appendChild(optionElement);
-            });
+            }
         }
     }
 }
