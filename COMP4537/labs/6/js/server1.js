@@ -132,9 +132,11 @@ function addDefinition() {
             outputDiv.appendChild(entryInfo);
 
         } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
-            document.getElementById('output').innerHTML = xhttp.responseText.message;
+            let response = JSON.parse(xhttp.responseText)
+            document.getElementById('output').innerHTML = response.message;
         }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
-            document.getElementById('output').innerHTML = `Error: ${xhttp.responseText.error} <br> Message: ${xhttp.responseText.message}`;
+            let response = JSON.parse(xhttp.responseText)
+            document.getElementById('output').innerHTML = `Error: ${response.error} <br> Message: ${response.message}`;
             patchDefinition(data)
         } else {
             document.getElementById('output').innerHTML = unexpected + xhttp.status;
