@@ -1,5 +1,4 @@
 // store strings here
-const dropdownSelect = 'SELECT DISTINCT language_name FROM LANGUAGES';
 const selectWord = 'SELECT (word, definition, word-language, definition-language) FROM ENTRY WHERE word=';
 const noWord = 'Please input both a word and definition. Also select languages for each.';
 const emptySearch = 'Please input a word.';
