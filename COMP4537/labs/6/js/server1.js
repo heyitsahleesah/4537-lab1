@@ -110,7 +110,7 @@ function addDefinition() {
 
     // send POST request
     xhttp.open('POST', url, true)
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.setRequestHeader('Content-type', 'application/json');
     xhttp.send(jsonString);
 
     // check status and display returned message
