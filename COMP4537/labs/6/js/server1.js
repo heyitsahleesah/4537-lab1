@@ -167,6 +167,7 @@ function patchDefinition(data) {
         areYouSureMessage.style.display = 'none';
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
+        document.getElementById('get-button').style.display = '';
     }
 
     // ask the user if they would like to update
@@ -199,7 +200,7 @@ function getDefinition() {
             console.log('Response from server:', xhttp.responseText);
             const response = JSON.parse(xhttp.responseText);
             // print definition if successful
-            document.getElementById('wordContainer').innerHTML = `${requestString} ${response.entry.word} <br> ${response.entry.definition} <br> ${response.entry['word_language']} <br> ${response.entry['definition_language']}`;
+            document.getElementById('wordContainer').innerHTML = `${requestString} <br> Word: ${response.entry.word} <br> Definition: ${response.entry.definition} <br> Word Language: ${response.entry['word_language']} <br> Definition Language: ${response.entry['definition_language']}`;
             deleteDefinition(response.word);
         } else {
             document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
@@ -255,6 +256,7 @@ function deleteDefinition(data) {
         deleteQuestion.style.display = 'none';
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
+        document.getElementById('get-button').style.display = ''
     }
 
     wordContainer.appendChild(deleteQuestion);
