@@ -230,7 +230,7 @@ function deleteDefinition(data) {
         // send POST request
         xhttp.open('DELETE', url, true)
         xhttp.setRequestHeader('Content-type', 'application/json');
-        xhttp.send(jsonString);
+        xhttp.send();
 
         // check status and display returned message
         xhttp.onreadystatechange = function () {
