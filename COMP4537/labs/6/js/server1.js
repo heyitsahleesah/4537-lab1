@@ -28,9 +28,9 @@ function updateDropdown() {
         if (xhttp.readyState === 4 && xhttp.status === 200){
             console.log('Response from server:', xhttp.responseText);
             // get the dropdown for the options
-            let defLanguageDisplay = document.getElementById('definition-languages');
+            let defLanguageDisplay = document.getElementById('definitionLanguages');
             // defLanguageDisplay.innerHTML = '';
-            let wordLanguageDisplay = document.getElementById('word-languages');
+            let wordLanguageDisplay = document.getElementById('wordLanguages');
             // wordLanguageDisplay.innerHTML = '';
             let response = JSON.parse(xhttp.responseText)
 
@@ -48,7 +48,7 @@ function updateDropdown() {
     }
 }
 
-function getDefinitions() {
+function getDefinition() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
 
