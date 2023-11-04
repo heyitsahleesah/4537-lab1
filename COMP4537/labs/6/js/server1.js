@@ -38,8 +38,8 @@ function updateDropdown() {
             response.result.forEach((lingo) => {
                 let optionElement = document.createElement('option');
                 // set the value and content of dropdown languages to languages from SQL
-                optionElement.value = lingo.language;
-                optionElement.textContent = lingo.language;
+                optionElement.value = lingo.language_name;
+                optionElement.textContent = lingo.language_name;
                 // Append the new element to the display element
                 defLanguageDisplay.appendChild(optionElement);
                 wordLanguageDisplay.appendChild(optionElement);
