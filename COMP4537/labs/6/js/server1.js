@@ -137,7 +137,7 @@ function addDefinition() {
         }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
             let response = JSON.parse(xhttp.responseText)
             console.log(xhttp.responseText)
-            document.getElementById('output').innerHTML = `Error: ${response.error} <br> Message: ${response.message}`;
+            document.getElementById('output').innerHTML = `Message: ${response.message}`;
             patchDefinition(data)
         } else {
             document.getElementById('output').innerHTML = unexpected + xhttp.status;
@@ -146,6 +146,7 @@ function addDefinition() {
 }
 
 function patchDefinition(data) {
+    console.log(data)
     let outputDiv = document.getElementById('output');
 
     // create a yes button
@@ -183,6 +184,9 @@ function patchDefinition(data) {
                 // append all to output div
                 outputDiv.appendChild(returnMessage);
                 outputDiv.appendChild(entryInfo);
+            } else if (xhttp.status === 400 || xhttp.status === 502) {
+                let response = JSON.parse(xhttp.responseText);
+                document.getElementById('output').innerHTML = `Message: ${response.message}`;
             }
         }
     }
