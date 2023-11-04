@@ -171,9 +171,9 @@ function patchDefinition(data) {
                 // get the response
                 let response = JSON.parse(xhttp.responseText);
                 // get the output div
-                let outputDiv = document.getElementById('output')
+                let outputDiv = document.getElementById('output');
                 // get the message
-                let returnMessage = response.message + '<br>';
+                let returnMessage = response.message;
                 // get the word entry info 
                 let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
             
