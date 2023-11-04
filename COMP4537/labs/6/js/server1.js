@@ -170,7 +170,7 @@ function patchDefinition(data) {
                 // get the message
                 let returnMessage = response["message"];
                 // get the word entry info 
-                let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
+                let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.entry.total}`;
             
                 // append all to output div
                 outputDiv.innerHTML = returnMessage;
