@@ -28,10 +28,10 @@ function updateDropdown() {
         if (xhttp.readyState === 4 && xhttp.status === 200){
             console.log('Response from server:', xhttp.responseText);
             // get the dropdown for the options
-            let defLanguageDisplay = document.getElementById('definitionLanguages');
-            defLanguageDisplay.innerHTML = '';
-            let wordLanguageDisplay = document.getElementById('wordLanguages');
-            wordLanguageDisplay.innerHTML = '';
+            let defDrop = document.getElementById('defLanguages');
+            defDrop.innerHTML = '';
+            let wordDrop = document.getElementById('wordLanguages');
+            wordDrop.innerHTML = '';
             let response = JSON.parse(xhttp.responseText)
 
             // parsing all of the rows is code adapted from [chatgpt]
@@ -41,8 +41,8 @@ function updateDropdown() {
                 optionElement.value = result.language_name;
                 optionElement.textContent = result.language_name;
                 // Append the new element to the display element
-                defLanguageDisplay.appendChild(optionElement);
-                wordLanguageDisplay.appendChild(optionElement);
+                defDrop.appendChild(optionElement);
+                wordDrop.appendChild(optionElement);
             }
         }
     }
