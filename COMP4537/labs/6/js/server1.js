@@ -42,7 +42,10 @@ function updateDropdown() {
                 optionElement.textContent = result.language_name;
                 // Append the new element to the display element
                 defDrop.appendChild(optionElement);
-                wordDrop.appendChild(optionElement);
+
+                 // Create a new option element for the 'wordLanguages' dropdown [chatgpt]
+                let wordOptionElement = optionElement.cloneNode(true);
+                wordDrop.appendChild(wordOptionElement);
             }
         }
     }
