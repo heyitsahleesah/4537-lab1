@@ -115,7 +115,7 @@ function addDefinition() {
 
     // check status and display returned message
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 200) {
+        if (xhttp.readyState === 4 && xhttp.status === 201) {
             console.log(xhttp.responseText);
             let response = JSON.parse(xhttp.responseText);
             document.getElementById('output').innerHTML = requestString + "<br> word: " + response.word + "<br> definition: " + response.definition + "<br> word language: " + response.word_language + "<br> definition language: " + response.definition_language + "<br> entry number: " + response.total;
