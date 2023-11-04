@@ -4,7 +4,7 @@ const noWord = 'Please input both a word and definition. Also select languages f
 const emptySearch = 'Please input a word.';
 const unexpected = 'Unexpected status code';
 const requestString = 'Request returned: ';
-const patchQuestion = 'Would you like to update the entry? <br>'
+const patchQuestion = 'Would you like to update the entry?'
 
 // create endpoint for both functions
 const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6/api/v1/';
@@ -134,7 +134,7 @@ function addDefinition() {
         } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
             document.getElementById('output').innerHTML = xhttp.responseText.message;
         }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
-            document.getElementById('output').innerHTML = xhttp.responseText.message;
+            document.getElementById('output').innerHTML = `Error: ${xhttp.responseText.error} <br> Message: ${xhttp.responseText.message}`;
             patchDefinition(data)
         } else {
             document.getElementById('output').innerHTML = unexpected + xhttp.status;
@@ -189,9 +189,9 @@ function patchDefinition(data) {
     noButton.textContent = "No";
     // Handle the no functionality
     noButton.onclick = function () {
-        areYouSureMessage.style.display = "none";
-        yesButton.style.display = "none";
-        noButton.style.display = "none";
+        areYouSureMessage.style.display = 'none';
+        yesButton.style.display = 'none';
+        noButton.style.display = 'none';
     }
 
     // ask the user if they would like to update
@@ -200,5 +200,7 @@ function patchDefinition(data) {
 
     outputDiv.appendChild(areYouSureMessage);
     outputDiv.appendChild(yesButton);
+    outputDiv.appendChild(' ');
     outputDiv.appendChild(noButton); 
+    document.getElementById('add-button').style.display = 'none';
 }
