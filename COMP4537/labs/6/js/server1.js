@@ -7,16 +7,16 @@ const unexpected = 'Unexpected status code';
 const requestString = "Request returned: ";
 
 // create endpoint for both functions
-const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6';
+const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6/api/v1/';
 
 // endpoints for various calls
 const wordDefEndpoint = '/api/v1/definition/';
-const getLanguage = '/api/v1/languages/';
 
 // use sql to populate the dropdown menu of available languages
 function updateDropdown() {
+    let resource = 'languages/'
     // url to send with get
-    const url = endpointRoot + getLanguage + dropdownSelect;
+    const url = endpointRoot + resource;
 
     // create a new xmlhttprequest
     let xhttp = new XMLHttpRequest();
