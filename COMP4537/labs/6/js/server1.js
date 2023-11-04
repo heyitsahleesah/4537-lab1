@@ -8,9 +8,6 @@ const requestString = "Request returned: ";
 // create endpoint for both functions
 const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6/api/v1/';
 
-// endpoints for various calls
-const wordDefEndpoint = '/api/v1/definition/';
-
 // use sql to populate the dropdown menu of available languages
 function updateDropdown() {
     let resource = 'languages/'
@@ -103,8 +100,7 @@ function addDefinition() {
           document.getElementById('output').innerHTML = noWord;
       } else {
           // create params and add to endpoint url for query
-          const param = `INSERT (${word}, ${definition}, ${wordLanguage}, ${defLanguage}) INTO ENTRY`;
-          const url = endpointRoot + wordDefEndpoint + param;
+          const url = endpointRoot + 'definition/';
   
           // send POST request
           xhttp.open('POST', url, true)
