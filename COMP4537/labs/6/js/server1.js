@@ -150,8 +150,7 @@ function patchDefinition(data) {
                 let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.entry.total}`;
             
                 // append all to output div
-                outputDiv.innerHTML = returnMessage;
-                outputDiv.innerHTML = entryInfo;
+                outputDiv.innerHTML = returnMessage + entryInfo;
                 document.getElementById('add-button').style.display = '';
             } else if (xhttp.status === 400 || xhttp.status === 502) {
                 let response = JSON.parse(xhttp.responseText);
