@@ -83,31 +83,38 @@ function addDefinition() {
 
     // check status and display returned message
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 201) {
+        if (xhttp.readyState === 4) {
             console.log(xhttp.responseText);
             // get the response
             let response = JSON.parse(xhttp.responseText);
-            // get the output div
-            let outputDiv = document.getElementById('output')
-            // get the message
-            let returnMessage = `${response.message}<br>`;
-            // get the word entry info 
-            let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
-        
-            // append all to output div
-            outputDiv.innerHTML = returnMessage;
-            outputDiv.innerHTML = entryInfo;
+            if (xhttp.status === 201) {
+                // console.log(xhttp.responseText);
+                // // get the response
+                // let response = JSON.parse(xhttp.responseText);
+                // get the output div
+                let outputDiv = document.getElementById('output')
+                // get the message
+                let returnMessage = `${response.message}<br>`;
+                // get the word entry info 
+                let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
+            
+                // append all to output div
+                outputDiv.innerHTML = returnMessage;
+                outputDiv.innerHTML = entryInfo;
 
-        } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
-            let response = JSON.parse(xhttp.responseText)
-            document.getElementById('output').innerHTML = response.message;
-        }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
-            let response = JSON.parse(xhttp.responseText)
-            console.log(xhttp.responseText)
-            document.getElementById('output').innerHTML = `Message: ${response.message}`;
-            patchDefinition(data)
+            } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
+                // let response = JSON.parse(xhttp.responseText)
+                document.getElementById('output').innerHTML = response.message;
+            }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
+                // let response = JSON.parse(xhttp.responseText)
+                // console.log(xhttp.responseText)
+                document.getElementById('output').innerHTML = `Message: ${response.message}`;
+                patchDefinition(data)
+            } else {
+                document.getElementById('output').innerHTML = unexpected + xhttp.status;
+            }
         } else {
-            document.getElementById('output').innerHTML = unexpected + xhttp.status;
+            console.log('Processing request.');
         }
     };
 }
@@ -145,7 +152,7 @@ function patchDefinition(data) {
                 // get the output div
                 let outputDiv = document.getElementById('output');
                 // get the message
-                let returnMessage = `${response.message} <br>`;
+                let returnMessage = `${response.message} <br><br>`;
                 // get the word entry info 
                 let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.entry.total}`;
             
@@ -196,14 +203,20 @@ function getDefinition() {
 
     // check for response
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 200){
+        if (xhttp.readyState === 4) {
             console.log('Response from server:', xhttp.responseText);
-            const response = JSON.parse(xhttp.responseText);
+            let response = JSON.parse(xhttp.responseText);
+          if (xhttp.status === 200) {
             // print definition if successful
             document.getElementById('wordContainer').innerHTML = `${requestString} <br> Word: ${response.entry.word} <br> Definition: ${response.entry.definition} <br> Word Language: ${response.entry['word_language']} <br> Definition Language: ${response.entry['definition_language']}`;
             deleteDefinition(response.entry.word);
+            } else if (xhttp.status === 400) {
+                document.getElementById('wordContainer').innerHTML = response.message;
+            } else {
+                document.getElementById('wordContainer').innerHTML = unexpected + response.status;
+            }
         } else {
-            document.getElementById('wordContainer').innerHTML = xhttp.responseText.message;
+            console.log('Processing request.');
         }
     }
 } 
