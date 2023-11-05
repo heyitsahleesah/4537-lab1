@@ -90,7 +90,7 @@ function addDefinition() {
             // get the output div
             let outputDiv = document.getElementById('output')
             // get the message
-            let returnMessage = response.message + '<br>';
+            let returnMessage = `${response.message}<br>`;
             // get the word entry info 
             let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
         
@@ -99,12 +99,12 @@ function addDefinition() {
             outputDiv.innerHTML = entryInfo;
 
         } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
-            let response = JSON.parse(xhttp.responseText)
-            document.getElementById('output').innerHTML = response.message;
+            // let response = JSON.parse(xhttp.responseText)
+            document.getElementById('output').innerHTML = xhttp.responseText.message;
         }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
-            let response = JSON.parse(xhttp.responseText)
-            console.log(xhttp.responseText)
-            document.getElementById('output').innerHTML = `Message: ${response.message}`;
+            // let response = JSON.parse(xhttp.responseText)
+            // console.log(xhttp.responseText)
+            document.getElementById('output').innerHTML = `Message: ${xhttp.responseText.message}`;
             patchDefinition(data)
         } else {
             document.getElementById('output').innerHTML = unexpected + xhttp.status;
