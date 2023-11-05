@@ -207,7 +207,7 @@ function getDefinition() {
             let response = JSON.parse(xhttp.responseText);
           if (xhttp.status === 200) {
             // print definition if successful
-            document.getElementById('wordContainer').innerHTML = `${requestString} <br> Word: ${response.entry.word} <br> Definition: ${response.entry.definition} <br> Word Language: ${response.entry['word_language']} <br> Definition Language: ${response.entry['definition_language']}`;
+            document.getElementById('wordContainer').innerHTML = `${response.message} <br> ${requestString} <br> Word: ${response.entry.word} <br> Definition: ${response.entry.definition} <br> Word Language: ${response.entry['word_language']} <br> Definition Language: ${response.entry['definition_language']}`;
             deleteDefinition(response.entry.word); // call function to determine if user wants to delete entry
             } else if (xhttp.status === 400) {
                 document.getElementById('wordContainer').innerHTML = response["message"];
