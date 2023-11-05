@@ -191,7 +191,7 @@ function getDefinition() {
     // get word from text box
     const wordSearch = document.getElementById('wordSearch').value;
  
-    const url = endpointRoot + 'definition/' + wordSearch;
+    const url = endpointRoot + 'definition/:' + wordSearch;
 
     // create a new xmlhttprequest
     let xhttp = new XMLHttpRequest();
@@ -239,7 +239,7 @@ function deleteDefinition(data) {
         let xhttp = new XMLHttpRequest();
 
         // create params and add to endpoint url for query
-        const url = endpointRoot + 'definition/' + data;
+        const url = endpointRoot + 'definition/:' + data;
 
         // send POST request
         xhttp.open('DELETE', url, true)
