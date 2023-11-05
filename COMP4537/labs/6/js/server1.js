@@ -94,13 +94,12 @@ function addDefinition() {
                 // get the output div
                 let outputDiv = document.getElementById('output')
                 // get the message
-                let returnMessage = `${response.message}<br>`;
+                let returnMessage = `${response.message}<br><br>`;
                 // get the word entry info 
                 let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
             
                 // append all to output div
-                outputDiv.innerHTML = returnMessage;
-                outputDiv.innerHTML = entryInfo;
+                outputDiv.innerHTML = returnMessage + entryInfo;
 
             } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
                 // let response = JSON.parse(xhttp.responseText)
@@ -211,7 +210,7 @@ function getDefinition() {
             document.getElementById('wordContainer').innerHTML = `${requestString} <br> Word: ${response.entry.word} <br> Definition: ${response.entry.definition} <br> Word Language: ${response.entry['word_language']} <br> Definition Language: ${response.entry['definition_language']}`;
             deleteDefinition(response.entry.word);
             } else if (xhttp.status === 400) {
-                document.getElementById('wordContainer').innerHTML = response.message;
+                document.getElementById('wordContainer').innerHTML = response["message"];
             } else {
                 document.getElementById('wordContainer').innerHTML = unexpected + response.status;
             }
@@ -250,13 +249,12 @@ function deleteDefinition(data) {
                 console.log(xhttp.responseText);
                 // get the response
                 let response = JSON.parse(xhttp.responseText);
-                if (xhttp.status === 200) {
-                    let returnMessage = response["message"];             
+                if (xhttp.status === 200) {          
                     // append all to output div
-                    wordContainer.innerHTML = returnMessage;
+                    wordContainer.innerHTML = `Message: ${response.message}`;
                     document.getElementById('get-button').style.display = '';
                 } else if (xhttp.status === 400 || xhttp.status === 502) {
-                    document.getElementById('output').innerHTML = `Message: ${response["message"]}`;
+                    document.getElementById('output').innerHTML = `Message: ${response.message}`;
                 }
             }
         }
