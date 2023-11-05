@@ -251,7 +251,7 @@ function deleteDefinition(data) {
                 let response = JSON.parse(xhttp.responseText);
                 if (xhttp.status === 200) {          
                     // append all to output div
-                    wordContainer.innerHTML = `Message: ${response.message}`;
+                    wordContainer.innerHTML = `Message: ${response.message} <br> Total Entries: ${response.total}`;
                     document.getElementById('get-button').style.display = '';
                 } else if (xhttp.status === 400 || xhttp.status === 502) {
                     document.getElementById('output').innerHTML = `Message: ${response.message}`;
