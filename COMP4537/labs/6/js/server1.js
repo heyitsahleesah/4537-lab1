@@ -62,7 +62,7 @@ function addDefinition() {
     const defLanguage = document.getElementById('defLanguages').value;
 
     // Regular expression to disallow numbers and special characters [chatgpt]
-    const invalidChars = /<>/;
+    const invalidChars = /[<>]/;
 
     if (invalidChars.test(word)) {
         document.getElementById('output').innerHTML = nohtmlWord;
