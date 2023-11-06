@@ -4,10 +4,11 @@ const noWord = 'Please input both a word and definition. Also select languages f
 const emptySearch = 'Please input a word.';
 const unexpected = 'Unexpected status code';
 const requestString = 'Request returned: ';
-const patchQuestion = 'Would you like to update the entry?'
-const deleteMessage = 'Would you like to delete this entry?'
+const patchQuestion = 'Would you like to update the entry?';
+const deleteMessage = 'Would you like to delete this entry?';
 const yes = 'yes';
 const no = 'no';
+const nohtmlWord = 'Word cannot contain html';
 
 // create endpoint
 const endpointRoot = 'https://www.wilwscott.com/COMP4537/labs/6/api/v1/';
@@ -60,58 +61,65 @@ function addDefinition() {
     const wordLanguage = document.getElementById('wordLanguages').value;
     const defLanguage = document.getElementById('defLanguages').value;
 
-    // create a JSON object with the data
-    const data = {
-        word: word,
-        definition: definition,
-        "word_language": wordLanguage,
-        "definition_language": defLanguage
-    };
-    
-    // Stringify JSON object for sending
-    const jsonString = JSON.stringify(data);
-    console.log(jsonString);
+    // Regular expression to disallow numbers and special characters [chatgpt]
+    const invalidChars = /<>/;
 
-    // create a new xmlhttprequest
-    let xhttp = new XMLHttpRequest();
+    if (invalidChars.test(word)) {
+        document.getElementById('output').innerHTML = nohtmlWord;
+    } else {
+        // create a JSON object with the data
+        const data = {
+            word: word,
+            definition: definition,
+            "word_language": wordLanguage,
+            "definition_language": defLanguage
+        };
+        
+        // Stringify JSON object for sending
+        const jsonString = JSON.stringify(data);
+        console.log(jsonString);
 
-    // endpoint url for query
-    const url = endpointRoot + 'definition/';
+        // create a new xmlhttprequest
+        let xhttp = new XMLHttpRequest();
 
-    // send POST request with stringified JSON object
-    xhttp.open('POST', url, true)
-    xhttp.setRequestHeader('Content-type', 'application/json');
-    xhttp.send(jsonString);
+        // endpoint url for query
+        const url = endpointRoot + 'definition/';
 
-    // check status and display returned message
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4) {
-            console.log(xhttp.responseText);
-            // get the response
-            let response = JSON.parse(xhttp.responseText);
-            if (xhttp.status === 201) { // if status successful
-                // get the output div
-                let outputDiv = document.getElementById('output')
-                // get the message
-                let returnMessage = `${response.message}<br><br>`;
-                // get the word entry info 
-                let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
-                // append all to output div
-                outputDiv.innerHTML = returnMessage + entryInfo;
-            } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
-                document.getElementById('output').innerHTML = response.message;
-            }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
-                document.getElementById('output').innerHTML = `Message: ${response.message}`;
-                // call patch function to ask user if they want to update entry
-                patchDefinition(data)
+        // send POST request with stringified JSON object
+        xhttp.open('POST', url, true)
+        xhttp.setRequestHeader('Content-type', 'application/json');
+        xhttp.send(jsonString);
+
+        // check status and display returned message
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState === 4) {
+                console.log(xhttp.responseText);
+                // get the response
+                let response = JSON.parse(xhttp.responseText);
+                if (xhttp.status === 201) { // if status successful
+                    // get the output div
+                    let outputDiv = document.getElementById('output')
+                    // get the message
+                    let returnMessage = `${response.message}<br><br>`;
+                    // get the word entry info 
+                    let entryInfo = `${requestString} <br> word: ${response.entry.word} <br> definition: ${response.entry.definition} <br> word language: ${response.entry['word_language']} <br> definition language: ${response.entry['definition_language']} <br> entry number: ${response.total}`;
+                    // append all to output div
+                    outputDiv.innerHTML = returnMessage + entryInfo;
+                } else if (xhttp.status === 400 || xhttp.status === 502) {         // certain errors return messages 
+                    document.getElementById('output').innerHTML = response.message;
+                }  else if (xhttp.status === 409) {         // need to check if user wants to update the database
+                    document.getElementById('output').innerHTML = `Message: ${response.message}`;
+                    // call patch function to ask user if they want to update entry
+                    patchDefinition(data)
+                } else {
+                    // unexpected error
+                    document.getElementById('output').innerHTML = unexpected + xhttp.status;
+                }
             } else {
-                // unexpected error
-                document.getElementById('output').innerHTML = unexpected + xhttp.status;
+                console.log('Processing request.');
             }
-        } else {
-            console.log('Processing request.');
-        }
-    };
+        };
+    }
 }
 
 // if the word already exists, check if the user wants to send a PATCH request to update the table
